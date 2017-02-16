@@ -10,10 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include "libft.h"
 # include "ft_printf.h"
+
+int ft_parsing_input(int argc, char **argv);
 
 #endif

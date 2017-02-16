@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <wchar.h>
 # include <locale.h>
-# include "../libft/libft.h"
+# include "libft.h"
 
 typedef enum		e_length
 {
