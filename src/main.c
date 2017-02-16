@@ -24,61 +24,84 @@ void ft_print_int_tab(int *tab, int size_tab)
   }
 }
 
-int *ft_counting_sort(int *tab, int size_tab, int max)
+int ft_stack(int *tab_int, int size_tab)
 {
-    int *tab_count;
-    int x;
-    int i;
-    int j;
-
-    x = 0;
-    i = 0;
-    j = 0;
-    if (max <= 0)
-      return (tab);
-    if (!(tab_count = (int*)malloc(sizeof(tab_count) * (max - 1))))
-      return (tab);
-    while (i < max + 1)
-      tab_count[i++] = 0;
-    i = 0;
-    while (i < size_tab)
-      tab_count[tab[i++]]++;
-    i = 0;
-    while (i < max + 1)
-    {
-      j = 0;
-      while (j < tab_count[i])
-      {
-        tab[x++] = i;
-        j++;
-      }
-      i++;
-    }
-    free(tab_count);
-    return (tab);
+  int *stack_a;
+  int *stack_b;
+  ft_putendl("===[A]===");
+  ft_print_int_tab(tab_int, size_tab);
+  ft_putendl("===[B]===");
+  ft_swap(&tab_int[0], &tab_int[size_tab - 1]);
+  ft_print_int_tab(tab_int, size_tab);
+  ft_putchar('\n');
+  return (0);
 }
+/*
+//sa ft_swap(&stack_a[0], &stack_a[1]);
+//sb ft_swap(&stack_b[0], &stack_b[1]);
+
+//rotate
+while (i < size_tab - 2)
+{
+    ft_swap(&stack_a[i], &stack_a[i + 1]);
+    i++;
+}
+//reverse rotate
+i = size_tab - 2;
+while (i > 1)
+{
+    ft_swap(&stack_a[i - 1], &stack_a[i]);
+    i--;
+}
+
+//
+int *new_stack_a;
+int *new_stack_b;
+
+if (!((int*)malloc(sizeof(new_stack_b) * (size_oldstack_b + 1))))
+  return (old_stack_b);
+new_stack[0] = old_stack_a[size_tab - 1];
+i = 0;
+while (i < size_oldstack_b)
+{
+  new_stack_b[i + 1] = old_stack_b[i];
+  i++;
+}
+return (new_stack_b);
+if (!((int*)malloc(sizeof(new_stack_a) * (size_oldstack_a - 1))))
+  return (old_stack_a);
+i = 0;
+while (i < size_oldstack_a - 2)
+{
+  new_stack_a[i] = old_stack_a[i];
+  i++;
+}
+return (new_stack_a);
+*/
 
 int main(int argc, char **argv)
 {
     int i;
     int *tab_int;
     int max;
+    int len_arg;
 
     i = 0;
     max = -2147483648;
+    len_arg = argc - 1;
     if (argc == 0)
       return (0);
     if (ft_parsing_input(argc, argv) == -1)
       return (-1);
     if (!(tab_int = (int*)malloc(sizeof(tab_int) * (argc - 1))))
       return (-1);
-    while (i < argc - 1)
+    while (i < len_arg)
     {
       tab_int[i] = ft_atoi(argv[i + 1]);
       max = tab_int[i] > max ? tab_int[i] : max;
       i++;
     }
-    tab_int = ft_counting_sort(tab_int, argc - 1, max);
-    ft_print_int_tab(tab_int, argc - 1);
+    ft_stack(tab_int, len_arg);
+//    tab_int = ft_counting_sort(tab_int, argc - 1, max);
     return (0);
 }

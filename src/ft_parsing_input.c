@@ -33,7 +33,8 @@ int ft_parsing_input(int argc, char **argv)
   i = 0;
   while (i < argc - 1)
   {
-    if (ft_isdigitstr(argv[i + 1]) == -1)
+    if (ft_isdigitstr(argv[i + 1]) == -1 || ft_lltoi(argv[i + 1]) >= 2147483648
+    || ft_lltoi(argv[i + 1]) < -2147483648)
     {
       ft_putstr("Error\n");
       return (-1);
