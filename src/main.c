@@ -53,30 +53,82 @@ void ft_reverse_rotate_ab(int *stack, int size_tab)
   }
 }
 
-void ft_push_ab()
+void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 {
-  int *new_stack_a;
-  int *new_stack_b;
+	void	*new_ptr;
 
-  if (!((int*)malloc(sizeof(new_stack_b) * (size_oldstack_b + 1))))
-    return (old_stack_b);
-  new_stack[0] = old_stack_a[size_tab - 1];
+  if (new_size == 0)
+    new_ptr = (void*)malloc(sizeof(int));
+  else
+    new_ptr = (void*)malloc(new_size);
+  if (!new_ptr)
+    return (NULL);
+  if (old_size > new_size)
+		ft_memcpy(new_ptr, ptr, new_size ? new_size : sizeof(int));
+	else
+		ft_memcpy(new_ptr, ptr, old_size);
+//  if (ptr)
+//	 free(ptr);
+	return (new_ptr);
+}
+
+int *first_stack(int **stack_a, t_data *data)
+{
+  int *tmp_stack;
+  int size_tab;
+  int i;
+
+//  ft_putnbr(data->size_stack_a);
+  size_tab = data->size_stack_a;
+  data->size_stack_a--;
+  if (!(tmp_stack = (int*)malloc(sizeof(tmp_stack) * size_tab)))
+    return (*stack_a);
+  tmp_stack = ft_memcpy(tmp_stack, stack_a, size_tab);
+  if (!(stack_a = (int**)ft_realloc(*stack_a, sizeof(int) * size_tab, sizeof(int) * 1)))
+    return (*stack_a);
   i = 0;
-  while (i < size_oldstack_b)
+  while (i < size_tab - 2)
   {
-    new_stack_b[i + 1] = old_stack_b[i];
+    stack_a[i] = &tmp_stack[i];
     i++;
   }
-  return (new_stack_b);
-  if (!((int*)malloc(sizeof(new_stack_a) * (size_oldstack_a - 1))))
-    return (old_stack_a);
+  if (tmp_stack)
+    free(tmp_stack);
+  return (*stack_a);
+}
+
+int *second_stack(int **stack_b, int *stack_a, t_data *data)
+{
+  int *tmp_stack;
+  int size_tab;
+  int i;
+
+//  ft_putnbr(data->size_stack_b);
+  size_tab = data->size_stack_b;
+  data->size_stack_b++;
+  if (!(tmp_stack = (int*)malloc(sizeof(tmp_stack) * size_tab)))
+    return (*stack_b);
+  tmp_stack = ft_memcpy(tmp_stack, stack_b, size_tab);
+  if (!(stack_b = (int**)ft_realloc(*stack_b, sizeof(int) * size_tab, sizeof(int) * 1)))
+    return (*stack_b);
+  stack_b[0] = &stack_a[size_tab - 1];
   i = 0;
-  while (i < size_oldstack_a - 2)
+  while (i < size_tab)
   {
-    new_stack_a[i] = old_stack_a[i];
+    stack_b[i + 1] = &tmp_stack[i];
     i++;
   }
-  return (new_stack_a);
+  if (tmp_stack)
+    free(tmp_stack);
+  return (*stack_b);
+}
+
+
+
+static void ft_push_ab(int *stack_a, int *stack_b, t_data *data)
+{
+  stack_b = second_stack(&stack_b, stack_a, data);
+  stack_a = first_stack(&stack_a, data);
 }
 
 //sa ft_swap(&stack_a[0], &stack_a[1]);
@@ -86,13 +138,18 @@ int ft_stack(int *tab_int, int size_tab)
 {
   int *stack_a;
   int *stack_b;
+  t_data data;
+
+  data.size_stack_a = size_tab;
+  data.size_stack_b = 0;
+  ft_push_ab(stack_a, stack_b, &data);
   ft_putendl("===[A]===");
-  ft_print_int_tab(tab_int, size_tab);
+  ft_print_int_tab(stack_a, size_tab);
   ft_putendl("===[B]===");
 //  ft_swap_ab(tab_int);
 //  ft_rotate_ab(tab_int, size_tab);
-  ft_reverse_rotate_ab(tab_int, size_tab);
-  ft_print_int_tab(tab_int, size_tab);
+//  ft_reverse_rotate_ab(tab_int, size_tab);
+  ft_print_int_tab(stack_b, size_tab);
   ft_putchar('\n');
   return (0);
 }
@@ -124,3 +181,27 @@ int main(int argc, char **argv)
 //    tab_int = ft_counting_sort(tab_int, argc - 1, max);
     return (0);
 }
+
+/*
+int *new_stack_a;
+int *new_stack_b;
+if (!((int*)malloc(sizeof(new_stack_b) * (size_oldstack_b + 1))))
+  return (old_stack_b);
+new_stack[0] = old_stack_a[size_tab - 1];
+i = 0;
+while (i < size_oldstack_b)
+{
+  new_stack_b[i + 1] = old_stack_b[i];
+  i++;
+}
+return (new_stack_b);
+if (!((int*)malloc(sizeof(new_stack_a) * (size_oldstack_a - 1))))
+  return (old_stack_a);
+i = 0;
+while (i < size_oldstack_a - 2)
+{
+  new_stack_a[i] = old_stack_a[i];
+  i++;
+}
+return (new_stack_a);
+*/
