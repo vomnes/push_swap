@@ -43,34 +43,59 @@ int main(int argc, char **argv)
     ft_push_ab(&stack_a, &stack_b);
     ft_push_ab(&stack_a, &stack_b);
     ft_push_ab(&stack_a, &stack_b);
-    ft_push_ab(&stack_a, &stack_b);
+    ft_swap_one_two(&stack_a);
+  //  ft_rotate(&stack_a);
+  //  ft_rotate(&stack_a);
+    ft_push_ab(&stack_b, &stack_a);
+//    ft_reverse_rotate(&stack_a);
     ft_putendl("===[A]===");
     ft_lst_display(stack_a);
     ft_putendl("===[B]===");
     ft_lst_display(stack_b);
     return (0);
 }
-
 /*
-int *new_stack_a;
-int *new_stack_b;
-if (!((int*)malloc(sizeof(new_stack_b) * (size_oldstack_b + 1))))
-  return (old_stack_b);
-new_stack[0] = old_stack_a[size_tab - 1];
-i = 0;
-while (i < size_oldstack_b)
+for i = 2:n,
+    for (k = i; k > 1 and a[k] < a[k-1]; k--)
+        swap a[k,k-1]
+    → invariant: a[1..i] is sorted
+end
+*/
+/*
+t_node *ft_sort_list(t_node *lst)
 {
-  new_stack_b[i + 1] = old_stack_b[i];
-  i++;
+    t_node *head;
+    t_node *current;
+    t_node *stack_b;
+
+    // zero or one element in list
+    if(lst == NULL || lst->next == NULL)
+        return (lst);
+    head = NULL; // head is the first element of resulting sorted list
+    while(lst != NULL)
+    {
+        current = lst;
+        lst = lst->next;
+        if(head == NULL || current->data < head->data) // insert into the head of the sorted list // or as the first element into an empty sorted list
+        {
+            current->next = head;
+            head = current;
+        }
+        else
+        { // insert current element into proper position in non-empty sorted list
+            stack_b = head;
+            while(stack_b != NULL)
+            {
+                if(stack_b->next == NULL || current->data < stack_b->next->data) // last element of the sorted list // middle of the list
+                {
+                    current->next = stack_b->next; // insert into middle of the sorted list or as the last element
+                    stack_b->next = current;
+                    break; // done
+                }
+                stack_b = stack_b->next;
+            }
+        }
+    }
+    return (head);
 }
-return (new_stack_b);
-if (!((int*)malloc(sizeof(new_stack_a) * (size_oldstack_a - 1))))
-  return (old_stack_a);
-i = 0;
-while (i < size_oldstack_a - 2)
-{
-  new_stack_a[i] = old_stack_a[i];
-  i++;
-}
-return (new_stack_a);
 */
