@@ -17,6 +17,7 @@ int main(int argc, char **argv)
     int i;
     t_node *stack_a;
     t_node *stack_b;
+    char *command;
     int len_arg;
 
     len_arg = argc - 1;
@@ -35,6 +36,10 @@ int main(int argc, char **argv)
         return (-1);
       i--;
     }
+    ft_shell(stack_a, stack_b);
+    return (0);
+}
+/*
 //    ft_push_back(&lst_tab, 42);
 //    ft_delete_first(&lst_tab);
   //  ft_rotate(&lst_tab);
@@ -52,8 +57,7 @@ int main(int argc, char **argv)
     ft_lst_display(stack_a);
     ft_putendl("===[B]===");
     ft_lst_display(stack_b);
-    return (0);
-}
+*/
 /*
 for i = 2:n,
     for (k = i; k > 1 and a[k] < a[k-1]; k--)
