@@ -30,6 +30,9 @@ typedef struct    s_node
 
 int ft_parsing_input(int argc, char **argv);
 int *ft_counting_sort(int *tab, int size_tab, int max);
+int			get_next_line(const int fd, char **line);
+void ft_shell(t_node *stack_a, t_node *stack_b);
+int ft_delete_last(t_node **lst_head);
 
 int ft_push_front(t_node **lst_head, int number);
 void	ft_lst_display(t_node *list);
