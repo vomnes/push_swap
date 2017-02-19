@@ -65,6 +65,33 @@ int ft_delete_first(t_node **lst_head)
   return (deleted_value);
 }
 
+int ft_delete_last(t_node **lst_head)
+{
+  t_node *tmp;
+	t_node *second_tmp;
+	int deleted_value;
+
+  tmp = *lst_head;
+	if((*lst_head)->next == NULL)
+	{
+		deleted_value = (*lst_head)->data;
+		free(lst_head);
+		lst_head = NULL;
+	}
+	else
+	{
+		while(tmp->next != NULL)
+		{
+			 second_tmp = tmp;
+			 tmp = tmp->next;
+		}
+		deleted_value = tmp->data;
+		free(second_tmp->next);
+		second_tmp->next=NULL;
+	}
+	return (deleted_value);
+}
+
 void ft_swap_one_two(t_node **lst_head)
 {
   if ((*lst_head != NULL) && ((*lst_head)->next != NULL))
@@ -75,22 +102,28 @@ void ft_rotate(t_node **lst_head)
 {
   t_node *lst;
 
-  lst = *lst_head;
-  while (lst->next != NULL)
-  {
-      ft_swap(&(lst->data), &(lst->next->data));
-      lst = lst->next;
-  }
+	if (*lst_head != NULL)
+	{
+		lst = *lst_head;
+	  while (lst->next != NULL)
+	  {
+	      ft_swap(&(lst->data), &(lst->next->data));
+	      lst = lst->next;
+	  }
+	}
 }
 
 int ft_reverse_rotate(t_node **lst_head)
 {
-  int first_to_last;
+  int last_to_first;
 
-  first_to_last = -1;
-  first_to_last = ft_delete_first(&(*lst_head));
-  if (ft_push_back(&(*lst_head), first_to_last) == -1)
-    return (-1);
+	if (*lst_head != NULL)
+	{
+		last_to_first = -1;
+		last_to_first = ft_delete_last(&(*lst_head));
+		if (ft_push_front(&(*lst_head), last_to_first) == -1)
+			return (-1);
+	}
   return (1);
 }
 
