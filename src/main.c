@@ -6,7 +6,7 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 10:05:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/02/16 10:05:33 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/02/20 19:25:10 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
       i--;
     }
     ft_sort(&env);
-  //  ft_shell(&env);
+//    ft_shell(&env);
     return (0);
 }
 /*
@@ -101,5 +101,34 @@ t_node *ft_sort_list(t_node *lst)
         }
     }
     return (head);
+}
+*/
+/*
+void echanger(int tableau[], int a, int b)
+{
+    int temp = tableau[a];
+    tableau[a] = tableau[b];
+    tableau[b] = temp;
+}
+
+void quickSort(int tableau[], int debut, int fin)
+{
+    int gauche = debut - 1;
+    int droite = fin + 1;
+    const int pivot = tableau[debut];
+
+    while(1)
+    {
+        while(tableau[droite] > pivot);
+            droite--;
+        while(tableau[gauche] < pivot);
+            gauche++;
+        if(gauche < droite)
+            echanger(tableau, gauche, droite);
+        else
+            break ;
+    }
+    quickSort(tableau, debut, droite);
+    quickSort(tableau, droite+1, fin);
 }
 */

@@ -32,8 +32,8 @@ int ft_sort(t_env *env)
   {
       env->data_a.len = ft_lst_min(env->stack_a, env);
       middle = (int)(env->data_a.len / 2);
-      ft_printf("middle = %d | len = %d | MIN = %d | index = %d\n",
-      middle, env->data_a.len, env->data_a.min, env->data_a.index_min);
+  //    ft_printf("middle = %d | len = %d | MIN = %d | index = %d\n",
+  //    middle, env->data_a.len, env->data_a.min, env->data_a.index_min);
       if (env->data_a.index_min == 0)
       {
         ft_push_ab(&env->stack_a, &env->stack_b);
@@ -67,7 +67,7 @@ int ft_sort(t_env *env)
   }
 //  ft_printf("len = %d | MIN = %d | index = %d\n",
 //  env->data_a.len, env->data_a.min, env->data_a.index_min);
+  ft_lst_display(env->stack_a);
   ft_printf("complexity >> %d\n", complexity);
-//  ft_lst_display(env->stack_a);
   return (0);
 }
