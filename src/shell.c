@@ -111,7 +111,7 @@ void ft_shell_command_two(char *command, t_node **stack_a, t_node **stack_b)
   }
 }
 
-void ft_shell(t_node *stack_a, t_node *stack_b)
+void ft_shell(t_env *env)
 {
   char *command;
 
@@ -121,11 +121,11 @@ void ft_shell(t_node *stack_a, t_node *stack_b)
   ft_putstr(" >> ");
   while (get_next_line(0, &command) > 0)
   {
-      ft_shell_print(command, stack_a, stack_b);
+      ft_shell_print(command, env->stack_a, env->stack_b);
       ft_shell_help_one(command);
       ft_shell_help_two(command);
-      ft_shell_command(command, &stack_a, &stack_b);
-      ft_shell_command_two(command, &stack_a, &stack_b);
+      ft_shell_command(command, &env->stack_a, &env->stack_b);
+      ft_shell_command_two(command, &env->stack_a, &env->stack_b);
       if (ft_strcmp(command, "exit") == 0)
         break ;
   }

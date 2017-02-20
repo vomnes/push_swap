@@ -15,8 +15,7 @@
 int main(int argc, char **argv)
 {
     int i;
-    t_node *stack_a;
-    t_node *stack_b;
+    t_env env;
     char *command;
     int len_arg;
 
@@ -24,19 +23,20 @@ int main(int argc, char **argv)
     i = len_arg;
     if (argc == 0)
       return (0);
-    if (!(stack_a = (t_node*)malloc(sizeof(t_node))))
+    if (!(env.stack_a = (t_node*)malloc(sizeof(t_node))))
       return (-1);
-    stack_a = NULL;
-    if (!(stack_b = (t_node*)malloc(sizeof(t_node))))
+    env.stack_a = NULL;
+    if (!(env.stack_b = (t_node*)malloc(sizeof(t_node))))
       return (-1);
-    stack_b = NULL;
+    env.stack_b = NULL;
     while (i)
     {
-      if (!(ft_push_front(&stack_a, ft_atoi(argv[i]))))
+      if (!(ft_push_front(&env.stack_a, ft_atoi(argv[i]))))
         return (-1);
       i--;
     }
-    ft_shell(stack_a, stack_b);
+    ft_sort(&env);
+  //  ft_shell(&env);
     return (0);
 }
 /*

@@ -18,8 +18,9 @@
 
 typedef struct  s_data
 {
-  int           size_stack_a;
-  int           size_stack_b;
+  int           min;
+  int           index_min;
+  int           len;
 }               t_data;
 
 typedef struct    s_node
@@ -28,10 +29,17 @@ typedef struct    s_node
     struct s_node *next;
 }                 t_node;
 
+typedef struct    s_env
+{
+  t_node          *stack_a;
+  t_data          data_a;
+  t_node          *stack_b;
+}                 t_env;
+
 int ft_parsing_input(int argc, char **argv);
 int *ft_counting_sort(int *tab, int size_tab, int max);
 int			get_next_line(const int fd, char **line);
-void ft_shell(t_node *stack_a, t_node *stack_b);
+void ft_shell(t_env *env);
 int ft_delete_last(t_node **lst_head);
 
 int ft_push_front(t_node **lst_head, int number);
@@ -40,5 +48,6 @@ void ft_swap_one_two(t_node **lst_head);
 void ft_rotate(t_node **lst_head);
 int ft_reverse_rotate(t_node **lst_head);
 int ft_push_ab(t_node **stack_one, t_node **stack_two);
+int ft_sort(t_env *env);
 
 #endif
