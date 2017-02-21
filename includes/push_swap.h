@@ -16,11 +16,29 @@
 # include "libft.h"
 # include "ft_printf.h"
 
+#define RED     "\x1b[31m"
+#define GREEN   "\x1b[32m"
+#define LIGHT_GREEN "\x1b[92m"
+#define YELLOW_GREEN "\x1b[38;5;190m"
+#define YELLOW  "\x1b[33m"
+#define BLUE    "\x1b[34m"
+#define MAGENTA "\x1b[35m"
+#define CYAN    "\x1b[36m"
+#define GOLD    "\x1b[38;5;214m"
+#define BOLD    "\x1b[1;m"
+#define ITALIC    "\x1b[3;m"
+#define UNDERLINE  "\x1b[4;m"
+#define RESET   "\x1b[0m"
+
+
 typedef struct  s_data
 {
   int           min;
   int           index_min;
+  int           max;
+  int           index_max;
   int           len;
+  int           median;
 }               t_data;
 
 typedef struct    s_node
@@ -34,6 +52,7 @@ typedef struct    s_env
   t_node          *stack_a;
   t_data          data_a;
   t_node          *stack_b;
+  t_data          data_b;
 }                 t_env;
 
 int ft_parsing_input(int argc, char **argv);
@@ -49,5 +68,8 @@ void ft_rotate(t_node **lst_head);
 int ft_reverse_rotate(t_node **lst_head);
 int ft_push_ab(t_node **stack_one, t_node **stack_two);
 int ft_sort(t_env *env);
+int	ft_lst_int(t_node *list, t_data *data);
+int ft_quicksort_insertion(t_env *env);
+int ft_lst_min(t_node *lst, t_data *val);
 
 #endif
