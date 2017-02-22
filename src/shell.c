@@ -137,7 +137,7 @@ void ft_shell_swap_pa(char *command, t_node **stack_a, t_node **stack_b, int *sh
 	}
 	if (ft_strcmp(command, "sb") == 0)
 	{
-		ft_swap_one_two(stack_a);
+		ft_swap_one_two(stack_b);
 		(*shell_complexity)++;
 		ft_print_stacks(*stack_a, *stack_b);
 	}
@@ -213,6 +213,7 @@ int ft_shell(t_env *env)
   char *command;
 	int op;
 
+	CLEAN
   ft_putendl("Push_Swap Shell");
   ft_putstr("Command : help - print - sa sb ss pa ");
   ft_putendl("pb ra rb rr rra rrb rrr - exit");
@@ -241,6 +242,11 @@ int ft_shell(t_env *env)
 			}
       if (ft_strcmp(command, "exit") == 0)
         return (1);
+			if (ft_strcmp(command, "clear") == 0)
+			{
+				CLEAN
+				ft_putstr(" >> ");
+			}
 			if (ft_strcmp(command, "op") == 0)
 			{
 				ft_putstr(LIGHT_GREEN"Number of operations : "RESET);
@@ -251,7 +257,7 @@ int ft_shell(t_env *env)
 			if (IS_IN("help") && IS_IN("print") && IS_IN("sa") && IS_IN("sb") &&
 			IS_IN("ss") && IS_IN("pa") && IS_IN("pb") && IS_IN("ra") && IS_IN("rb") &&
 			IS_IN("rr") && IS_IN("rra") && IS_IN("rrb") && IS_IN("rrr") &&
-			IS_IN("exit") && IS_IN("op"))
+			IS_IN("exit") && IS_IN("op") && IS_IN("clear"))
 			{
 				ft_putstr(RED"Unknown Command "RESET);
 				ft_putendl(": Try help");

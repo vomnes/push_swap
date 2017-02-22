@@ -35,6 +35,5 @@ int	ft_lst_median(t_node *list, t_data *data)
 //  while (i < len)
 //    ft_printf(">> %d\n", tab[i++]);
   data->median = tab[len / 2];
-  ft_putnbr(data->median);
   return (0);
 }

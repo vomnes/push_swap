@@ -29,7 +29,7 @@
 #define ITALIC    "\x1b[3;m"
 #define UNDERLINE  "\x1b[4;m"
 #define RESET   "\x1b[0m"
-
+#define CLEAN ft_putstr("\033[H\033[2J");
 
 typedef struct  s_data
 {
@@ -58,7 +58,7 @@ typedef struct    s_env
 int ft_parsing_input(int argc, char **argv);
 int *ft_counting_sort(int *tab, int size_tab, int max);
 int			get_next_line(const int fd, char **line);
-void ft_shell(t_env *env);
+int ft_shell(t_env *env);
 int ft_delete_last(t_node **lst_head);
 
 int ft_push_front(t_node **lst_head, int number);
@@ -70,6 +70,15 @@ int ft_push_ab(t_node **stack_one, t_node **stack_two);
 int ft_sort(t_env *env);
 int	ft_lst_int(t_node *list, t_data *data);
 int ft_quicksort_insertion(t_env *env);
-int ft_lst_min(t_node *lst, t_data *val);
+int ft_lst_is_sorted(t_node *list);
+int ft_lst_values(t_node *lst, t_data *val);
+void		ft_bubble_sort(int *tab, int len);
+int	ft_lst_median(t_node *list, t_data *data);
+int ft_lst_is_under(t_node *list, int limit);
+int ft_lst_is_over(t_node *list, int limit);
+int	ft_lst_len(t_node *list);
+void ft_print_stacks(t_node *stack_a, t_node *stack_b);
+int ft_lst_min(t_node *lst);
+int ft_lst_bubble_sort(t_node *stack_a, t_node *stack_b);
 
 #endif
