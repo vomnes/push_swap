@@ -35,8 +35,10 @@ int main(int argc, char **argv)
         return (-1);
       i--;
     }
-    ft_sort(&env);
-//    ft_shell(&env);
+//    ft_sort(&env);
+//    ft_lst_int(env.stack_a, &env.data_a);
+//    ft_quicksort_insertion(&env);
+    ft_shell(&env);
     return (0);
 }
 /*

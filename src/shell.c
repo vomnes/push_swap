@@ -83,7 +83,6 @@ void ft_shell_help_one(char *command)
 {
   if (ft_strcmp(command, "help") == 0)
   {
-		ft_putstr(YELLOW_GREEN"help :\n"RESET);
     ft_putstr("==============================[Help");
     ft_putendl("]==============================");
 		ft_putendl("print : Print stack a and stack b\n");
@@ -220,7 +219,7 @@ int ft_shell(t_env *env)
 	ft_putendl("-> Stack a and stack b :");
 	ft_print_stacks(env->stack_a, env->stack_b);
 	op = 0;
-	if (env->stack_a != NULL && ft_lst_issort(env->stack_a) == 1 && env->stack_b == NULL)
+	if (env->stack_a != NULL && ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
 	{
 		ft_putstr(LIGHT_GREEN"Already sorted\n"RESET);
 		return (1);
@@ -233,7 +232,7 @@ int ft_shell(t_env *env)
 			ft_shell_swap_pa(command, &env->stack_a, &env->stack_b, &op);
       ft_shell_reverse_pb(command, &env->stack_a, &env->stack_b, &op);
       ft_shell_reverse_rotate(command, &env->stack_a, &env->stack_b, &op);
-			if (env->stack_a != NULL && ft_lst_issort(env->stack_a) == 1 && env->stack_b == NULL)
+			if (env->stack_a != NULL && ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
 			{
 				ft_putstr(LIGHT_GREEN"Sorted with "RESET);
 				ft_putnbr(op);
