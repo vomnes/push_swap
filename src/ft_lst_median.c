@@ -31,6 +31,9 @@ int	ft_lst_median(t_node *list, t_data *data)
     i++;
 	}
   ft_bubble_sort(tab, len);
-  data->median = tab[len / 2];
+	if (ft_lst_len(list) == 4)
+			data->median = tab[1];
+	else
+  		data->median = tab[len / 2];
   return (0);
 }

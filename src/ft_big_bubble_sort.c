@@ -12,7 +12,7 @@
 
 # include "push_swap.h"
 
-int ft_push_min(t_node **stack_a, t_node **stack_b, int pos, int middle)
+static int ft_push_min(t_node **stack_a, t_node **stack_b, int pos, int middle)
 {
   if (pos == 0)
   {
