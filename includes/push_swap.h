@@ -79,6 +79,10 @@ int ft_lst_is_over(t_node *list, int limit);
 int	ft_lst_len(t_node *list);
 void ft_print_stacks(t_node *stack_a, t_node *stack_b);
 int ft_lst_min(t_node *lst);
-int ft_lst_bubble_sort(t_node *stack_a, t_node *stack_b);
+void ft_lst_bubble_sort(t_node **stack);
+int ft_lst_max(t_node *lst);
+int ft_big_bubble_sort(t_node **stack_a, t_node **stack_b, t_env *env);
+void ft_lst_bubble_reverse_sort_b(t_node **stack);
+int ft_lst_is_revsorted(t_node *list);
 
 #endif

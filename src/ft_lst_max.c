@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_median.c                                    :+:      :+:    :+:   */
+/*   ft_lst_max.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/22 11:34:08 by vomnes            #+#    #+#             */
-/*   Updated: 2017/02/22 11:34:09 by vomnes           ###   ########.fr       */
+/*   Created: 2017/02/23 14:00:41 by vomnes            #+#    #+#             */
+/*   Updated: 2017/02/23 14:00:42 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-int	ft_lst_median(t_node *list, t_data *data)
+int ft_lst_max(t_node *lst)
 {
-	t_node *temp;
-  int *tab;
-  int len;
-  int i;
+  t_node *temp;
+  int max;
 
-  len = ft_lst_len(list);
-  if (!(tab = (int*)malloc(sizeof(tab) * len)))
-      return (-1);
-	temp = list;
-  i = 0;
-	while (temp != NULL)
-	{
-		tab[i] = (int)temp->data;
-		temp = temp->next;
-    i++;
-	}
-  ft_bubble_sort(tab, len);
-  data->median = tab[len / 2];
-  return (0);
+  temp = lst;
+  max = -2147483648;
+  while (temp != NULL)
+  {
+    max = temp->data > max ? temp->data : max;
+    temp = temp->next;
+  }
+  return (max);
 }

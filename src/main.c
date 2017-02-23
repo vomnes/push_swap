@@ -37,7 +37,10 @@ int main(int argc, char **argv)
     }
 //    ft_sort(&env);
 //    ft_quicksort_insertion(&env);
-    ft_lst_bubble_sort(env.stack_a, env.stack_b);
+//      ft_big_bubble_sort(env.stack_a, env.stack_b, &env);
+//      ft_print_stacks(env.stack_a, env.stack_b);
+      ft_big_bubble_sort(&env.stack_a, &env.stack_b, &env);//ft_lst_bubble_reverse_sort_b(&env.stack_a);
+      ft_print_stacks(env.stack_a, env.stack_b);
 //    ft_shell(&env);
     return (0);
 }
