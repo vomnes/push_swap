@@ -60,7 +60,7 @@ int ft_big_bubble_sort(t_node **stack_a, t_node **stack_b, t_env *env)
       ft_lst_bubble_sort(&(*stack_a));
   else if (len <= 6)
   {
-      ft_lst_median(*stack_a, &env->data_a);
+      ft_lst_median(*stack_a, &env->data_a, 2);
       while (ft_lst_min(*stack_a) < env->data_a.median)
       {
           if ((*stack_a)->data > (*stack_a)->next->data &&
@@ -83,7 +83,3 @@ int ft_big_bubble_sort(t_node **stack_a, t_node **stack_b, t_env *env)
   }
   return (0);
 }
-/*
-ft_lst_median(t_node *list, t_data *data);
-ft_lst_is_under(t_node *list, int limit);
-*/
