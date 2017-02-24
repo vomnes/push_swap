@@ -43,7 +43,7 @@ int ft_quicksort_insertion__(t_env *env)
   pos = -1;
   flag = 0;
 	turn = 0;
-  ft_lst_median(env->stack_a, &env->data_a);
+  ft_lst_median(env->stack_a, &env->data_a, 2);
   ft_lst_is_under(env->stack_a, 1);
   while (flag == 0)
   {
@@ -51,7 +51,7 @@ int ft_quicksort_insertion__(t_env *env)
     {
         if (ft_lst_is_under(env->stack_a, env->data_a.median) == -1)
         {
-          ft_lst_median(env->stack_a, &env->data_a);
+          ft_lst_median(env->stack_a, &env->data_a, 2);
           ft_reverse_rotate(&env->stack_b);
           ft_putendl("rrb");
         }
@@ -87,14 +87,14 @@ int ft_quicksort_insertion__(t_env *env)
         }
         flag = 0;
     }
-    ft_lst_median(env->stack_b, &env->data_b);
+    ft_lst_median(env->stack_b, &env->data_b, 2);
     while (turn == 1)
     {
 				if (env->stack_b == NULL)
 						turn = 0;
         if (ft_lst_is_over(env->stack_b, env->data_b.median) == -1)
         {
-          ft_lst_median(env->stack_b, &env->data_b);
+          ft_lst_median(env->stack_b, &env->data_b, 2);
           ft_reverse_rotate(&env->stack_a);
           ft_putendl("ra");
         }

@@ -35,12 +35,13 @@ int main(int argc, char **argv)
         return (-1);
       i--;
     }
+//    ft_printf("--> %d\n", ft_lst_is_under(env.stack_a, 5));
 //    ft_sort(&env);
-//    ft_quicksort_insertion(&env);
-//      ft_big_bubble_sort(env.stack_a, env.stack_b, &env);
+//ft_print_stacks(env.stack_a, env.stack_b);
+    ft_quicksort_insertion(&env);
+//      ft_big_bubble_sort(&env.stack_a, &env.stack_b, &env);
 //      ft_print_stacks(env.stack_a, env.stack_b);
-      ft_big_bubble_sort(&env.stack_a, &env.stack_b, &env);//ft_lst_bubble_reverse_sort_b(&env.stack_a);
-      ft_print_stacks(env.stack_a, env.stack_b);
 //    ft_shell(&env);
+
     return (0);
 }

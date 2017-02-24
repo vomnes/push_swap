@@ -44,7 +44,7 @@ void ft_print_stacks(t_node *stack_a, t_node *stack_b)
 	{
 		if (len_a == len_b)
 		{
-			ft_printf("  %3d         %3d    \n", temp_a->data, temp_b->data);
+			ft_printf("%5d       %5d    \n", temp_a->data, temp_b->data);
 			len_a--;
 			len_b--;
 			temp_a = temp_a->next;
@@ -52,13 +52,13 @@ void ft_print_stacks(t_node *stack_a, t_node *stack_b)
 		}
 		else if (len_a > len_b)
 		{
-				ft_printf("  %3d\n", temp_a->data);
+				ft_printf("%5d\n", temp_a->data);
 				temp_a = temp_a->next;
 				len_a--;
 		}
 		else if (len_a < len_b)
 		{
-				ft_printf("              %3d    \n", temp_b->data);
+				ft_printf("            %5d    \n", temp_b->data);
 				temp_b = temp_b->next;
 				len_b--;
 		}

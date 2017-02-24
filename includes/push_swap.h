@@ -31,6 +31,8 @@
 #define RESET   "\x1b[0m"
 #define CLEAN ft_putstr("\033[H\033[2J");
 
+# define ABS(x) ((x < 0) ? -x : x)
+
 typedef struct  s_data
 {
   int           min;
@@ -73,7 +75,7 @@ int ft_quicksort_insertion(t_env *env);
 int ft_lst_is_sorted(t_node *list);
 int ft_lst_values(t_node *lst, t_data *val);
 void		ft_bubble_sort(int *tab, int len);
-int	ft_lst_median(t_node *list, t_data *data);
+int	ft_lst_median(t_node *list, t_data *data, int level);
 int ft_lst_is_under(t_node *list, int limit);
 int ft_lst_is_over(t_node *list, int limit);
 int	ft_lst_len(t_node *list);

@@ -34,6 +34,6 @@ int	ft_lst_median(t_node *list, t_data *data, int level)
 	if (ft_lst_len(list) == 4)
 			data->median = tab[1];
 	else
-  		data->median = tab[(int)(len / level)]; //2 -> 25 //3 -> 100 //5 -> 500
+  		data->median = tab[(int)(len / level)];
   return (0);
 }
