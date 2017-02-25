@@ -86,5 +86,6 @@ int ft_lst_max(t_node *lst);
 int ft_big_bubble_sort(t_node **stack_a, t_node **stack_b, t_env *env);
 void ft_lst_bubble_reverse_sort_b(t_node **stack);
 int ft_lst_is_revsorted(t_node *list);
+int ft_checker(t_env *env);
 
 #endif
