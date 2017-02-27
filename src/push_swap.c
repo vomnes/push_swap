@@ -38,9 +38,12 @@ int main(int argc, char **argv)
       i--;
     }
     if (ft_lst_len(env.stack_a) <= 6)
-        ft_big_bubble_sort(&env.stack_a, &env.stack_b, &env);
+    {
+      if (ft_big_bubble_sort(&env.stack_a, &env.stack_b, &env) == -1)
+        return (-1);
+    }
     else
         ft_algorithm_sort(&env);
-    while (42) {}
+    //while (42) {}
     return (0);
 }
