@@ -130,21 +130,25 @@ int ft_checker(t_env *env)
 			ft_checker_swap_pa(command, &env->stack_a, &env->stack_b, &op);
       ft_checker_reverse_pb(command, &env->stack_a, &env->stack_b, &op);
       ft_checker_reverse_rotate(command, &env->stack_a, &env->stack_b, &op);
-			if (env->stack_a != NULL && ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
-			{
-				ft_putstr(LIGHT_GREEN"OK - Sorted with "RESET);
-				ft_putnbr(op);
-				ft_putstr(LIGHT_GREEN" operation(s) !\n"RESET);
-				return (1);
-			}
 			if (IS_IN("sa") && IS_IN("sb") && IS_IN("ss") && IS_IN("pa") &&
       IS_IN("pb") && IS_IN("ra") && IS_IN("rb") && IS_IN("rr") &&
       IS_IN("rra") && IS_IN("rrb") && IS_IN("rrr"))
 			{
-				ft_putendl(RED"ERROR"RESET);
+				ft_putendl(RED"Error"RESET);
         return (1);
 			}
       //ft_checker_print_stacks(env->stack_a, env->stack_b);
   }
+	if (env->stack_a != NULL && ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
+	{
+		ft_putstr(LIGHT_GREEN"OK - Sorted with "RESET);
+		ft_putnbr(op);
+		ft_putstr(LIGHT_GREEN" operation(s) !\n"RESET);
+		return (1);
+	}
+	else
+	{
+		ft_putstr(RED"KO - Not sorted\n"RESET);
+	}
 	return (0);
 }

@@ -12,7 +12,7 @@
 
 # include "push_swap.h"
 
-static int ft_lst_basic_bubble_sort_b(t_node **stack)
+static int ft_lst_basic_bubble_sort(t_node **stack)
 {
   t_node *tmp;
 
@@ -35,7 +35,7 @@ static int ft_lst_basic_bubble_sort_b(t_node **stack)
   return (1);
 }
 
-static int ft_lst_rev_bubble_sort_b(t_node **stack)
+static int ft_lst_rev_bubble_sort(t_node **stack)
 {
   t_node *tmp;
 
@@ -58,7 +58,7 @@ static int ft_lst_rev_bubble_sort_b(t_node **stack)
   return (1);
 }
 
-void ft_lst_bubble_reverse_sort_b(t_node **stack)
+void ft_lst_bubble_reverse_sort(t_node **stack)
 {
   int min;
   int max;
@@ -80,8 +80,8 @@ void ft_lst_bubble_reverse_sort_b(t_node **stack)
       if (((*stack)->next->data == min && (*stack)->next->next->data == max)
       || ((*stack)->next->data == max && (*stack)->next->next->data == min)
       || ((*stack)->next->next->data == max && (*stack)->data == min))
-        ft_lst_rev_bubble_sort_b(&(*stack));
+        ft_lst_rev_bubble_sort(&(*stack));
       else
-        ft_lst_basic_bubble_sort_b(&(*stack));
+        ft_lst_basic_bubble_sort(&(*stack));
   }
 }

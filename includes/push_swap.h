@@ -58,34 +58,37 @@ typedef struct    s_env
 }                 t_env;
 
 int ft_parsing_input(int argc, char **argv);
-int *ft_counting_sort(int *tab, int size_tab, int max);
 int			get_next_line(const int fd, char **line);
 int ft_shell(t_env *env);
 int ft_delete_last(t_node **lst_head);
 
 int ft_push_front(t_node **lst_head, int number);
-void	ft_lst_display(t_node *list);
+int ft_push_back(t_node **lst_head, int number);
+int ft_delete_first(t_node **lst_head);
+int ft_delete_last(t_node **lst_head);
+
 void ft_swap_one_two(t_node **lst_head);
 void ft_rotate(t_node **lst_head);
 int ft_reverse_rotate(t_node **lst_head);
 int ft_push_ab(t_node **stack_one, t_node **stack_two);
-int ft_sort(t_env *env);
-int	ft_lst_int(t_node *list, t_data *data);
-int ft_quicksort_insertion(t_env *env);
+
 int ft_lst_is_sorted(t_node *list);
-int ft_lst_values(t_node *lst, t_data *val);
+int ft_lst_is_revsorted(t_node *list);
+int ft_algorithm_sort(t_env *env);
+void ft_lst_bubble_sort(t_node **stack);
 void		ft_bubble_sort(int *tab, int len);
+void ft_lst_bubble_reverse_sort(t_node **stack);
+int ft_big_bubble_sort(t_node **stack_a, t_node **stack_b, t_env *env);
+
+int	ft_lst_len(t_node *list);
+int ft_lst_min(t_node *lst);
+int ft_lst_max(t_node *lst);
+int ft_lst_values(t_node *lst, t_data *val);
 int	ft_lst_median(t_node *list, t_data *data, int level);
 int ft_lst_is_under(t_node *list, int limit);
-int ft_lst_is_over(t_node *list, int limit);
-int	ft_lst_len(t_node *list);
+
 void ft_print_stacks(t_node *stack_a, t_node *stack_b);
-int ft_lst_min(t_node *lst);
-void ft_lst_bubble_sort(t_node **stack);
-int ft_lst_max(t_node *lst);
-int ft_big_bubble_sort(t_node **stack_a, t_node **stack_b, t_env *env);
-void ft_lst_bubble_reverse_sort_b(t_node **stack);
-int ft_lst_is_revsorted(t_node *list);
 int ft_checker(t_env *env);
+void ft_free_stack(t_node *stack);
 
 #endif

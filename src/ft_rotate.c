@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_is_over.c                                   :+:      :+:    :+:   */
+/*   ft_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/22 13:17:29 by vomnes            #+#    #+#             */
-/*   Updated: 2017/02/22 13:17:30 by vomnes           ###   ########.fr       */
+/*   Created: 2017/02/27 11:46:22 by vomnes            #+#    #+#             */
+/*   Updated: 2017/02/27 11:46:22 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-int ft_lst_is_over(t_node *list, int limit)
+void ft_rotate(t_node **lst_head)
 {
-  t_node *temp;
-  int index;
+  t_node *lst;
 
-  temp = list;
-  index = 0;
-  while (temp != NULL)
-  {
-    if (temp->data >= limit)
-      return (index);
-    index++;
-    temp = temp->next;
-  }
-  return(-1);
+	if (*lst_head != NULL)
+	{
+		lst = *lst_head;
+	  while (lst->next != NULL)
+	  {
+	      ft_swap(&(lst->data), &(lst->next->data));
+	      lst = lst->next;
+	  }
+	}
 }

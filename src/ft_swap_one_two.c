@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_is_under.c                                  :+:      :+:    :+:   */
+/*   ft_swap_one_two.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/22 11:33:52 by vomnes            #+#    #+#             */
-/*   Updated: 2017/02/22 11:33:52 by vomnes           ###   ########.fr       */
+/*   Created: 2017/02/27 11:46:30 by vomnes            #+#    #+#             */
+/*   Updated: 2017/02/27 11:46:30 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-int ft_lst_is_under(t_node *list, int limit)
+void ft_swap_one_two(t_node **lst_head)
 {
-  t_node *temp;
-  int index;
-
-  temp = list;
-  index = 0;
-  while (temp != NULL)
-  {
-    if (temp->data <= limit)
-      return (index);
-    index++;
-    temp = temp->next;
-  }
-  return(-1);
+  if ((*lst_head != NULL) && ((*lst_head)->next != NULL))
+      ft_swap(&((*lst_head)->data), &((*lst_head)->next->data));
 }

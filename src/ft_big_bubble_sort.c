@@ -74,7 +74,7 @@ int ft_big_bubble_sort(t_node **stack_a, t_node **stack_b, t_env *env)
           ft_push_min(&(*stack_a), &(*stack_b), pos, middle);
       }
       ft_lst_bubble_sort(&(*stack_a));
-      ft_lst_bubble_reverse_sort_b(&(*stack_b));
+      ft_lst_bubble_reverse_sort(&(*stack_b));
       while ((*stack_b) != NULL)
       {
         ft_push_ab(&(*stack_b), &(*stack_a));

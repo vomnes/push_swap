@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_is_under.c                                  :+:      :+:    :+:   */
+/*   ft_reverse_rotate.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/22 11:33:52 by vomnes            #+#    #+#             */
-/*   Updated: 2017/02/22 11:33:52 by vomnes           ###   ########.fr       */
+/*   Created: 2017/02/27 11:46:11 by vomnes            #+#    #+#             */
+/*   Updated: 2017/02/27 11:46:12 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-int ft_lst_is_under(t_node *list, int limit)
+int ft_reverse_rotate(t_node **lst_head)
 {
-  t_node *temp;
-  int index;
+  int last_to_first;
 
-  temp = list;
-  index = 0;
-  while (temp != NULL)
-  {
-    if (temp->data <= limit)
-      return (index);
-    index++;
-    temp = temp->next;
-  }
-  return(-1);
+	if (*lst_head != NULL)
+	{
+		last_to_first = -1;
+		last_to_first = ft_delete_last(&(*lst_head));
+		if (ft_push_front(&(*lst_head), last_to_first) == -1)
+			return (-1);
+	}
+  return (1);
 }
