@@ -6,7 +6,7 @@ int ft_max_under_max(t_node *stack, int max_less)
   int tmp_nb;
 
   tmp = stack;
-  tmp_nb = 0;
+  tmp_nb = -2147483648;
   while (tmp != NULL)
   {
     if (tmp->data < max_less && tmp->data > tmp_nb)
