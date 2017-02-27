@@ -86,9 +86,14 @@ int ft_lst_max(t_node *lst);
 int ft_lst_values(t_node *lst, t_data *val);
 int	ft_lst_median(t_node *list, t_data *data, int level);
 int ft_lst_is_under(t_node *list, int limit);
+int ft_push_min(t_node **stack_a, t_node **stack_b, int pos, int middle);
 
+int ft_max_under_max(t_node *stack, int max_less);
+int ft_max_under_max_index(t_node *stack, int max_less);
 void ft_print_stacks(t_node *stack_a, t_node *stack_b);
 int ft_checker(t_env *env);
 void ft_free_stack(t_node *stack);
+
+int ft_get_index_value(t_node *stack, int nb);
 
 #endif
