@@ -16,112 +16,13 @@
 # define MAX_2 val.max_2
 # define MAX_3 val.max_3
 
-static int ft_push_max(t_node **stack_a, t_node **stack_b, int pos, int middle)
+static void ft_swap_this(t_node **stack_a)
 {
-  if (pos == 0)
-  {
-    ft_push_ab(&(*stack_b), &(*stack_a));
-    ft_putendl("pa");
-  }
-  else if (pos < middle)
-  {
-    ft_rotate(&(*stack_b));
-    ft_putendl("rb");
-  }
-  else if (pos >= middle)
-  {
-    ft_reverse_rotate(&(*stack_b));
-    ft_putendl("rrb");
-  }
-  return (0);
+  ft_swap_one_two(&(*stack_a));
+  ft_putendl("sa");
 }
 
-int ft_max_under_max_index(t_node *stack, int max_less)
-{
-  t_node *tmp;
-  int index;
-  int index_val;
-  int tmp_nb;
-
-  tmp = stack;
-  index = 0;
-  index_val = 0;
-  tmp_nb = -2147483648;
-  while (tmp != NULL)
-  {
-    if (tmp->data < max_less && tmp->data > tmp_nb)
-    {
-      index_val = index;
-      tmp_nb = tmp->data;
-    }
-    tmp = tmp->next;
-    index++;
-  }
-  return (index_val);
-}
-
-int ft_get_index_value(t_node *stack, int nb)
-{
-  t_node *tmp;
-  int index;
-
-  tmp = stack;
-  index = 0;
-  if (tmp->data == nb)
-      return (0);
-  while (tmp != NULL && tmp->data != nb)
-  {
-    tmp = tmp->next;
-    index++;
-  }
-  if (index > ft_lst_len(stack) / 2)
-      index = ft_lst_len(stack) - index;
-  return (index);
-}
-
-int ft_get_true_index_value(t_node *stack, int nb)
-{
-  t_node *tmp;
-  int index;
-
-  tmp = stack;
-  index = 0;
-  while (tmp != NULL && tmp->data != nb)
-  {
-    tmp = tmp->next;
-    index++;
-  }
-  return (index);
-}
-
-int ft_lst_is_in(t_node *lst, int nb)
-{
-  t_node *temp;
-
-  temp = lst;
-  while (temp != NULL)
-  {
-    if (temp->data == nb)
-      return (-1);
-    temp = temp->next;
-  }
-  return (0);
-}
-
-void ft_push_selected_value(t_node **stack_a, t_node **stack_b, int nb)
-{
-    int pos;
-    int middle;
-
-    middle = (int)(ft_lst_len(*stack_b) / 2);
-    while (ft_lst_is_in(*stack_b, nb) == -1)
-    {
-        pos = ft_get_true_index_value(*stack_b, nb);
-        ft_push_max(&(*stack_a), &(*stack_b), pos, middle);
-    }
-}
-
-void ft_algo_opti_max(t_node **stack_a, t_node **stack_b, t_env *env)
+static void ft_algo_opti_max(t_node **stack_a, t_node **stack_b, t_env *env)
 {
   t_max val;
 
@@ -133,8 +34,7 @@ void ft_algo_opti_max(t_node **stack_a, t_node **stack_b, t_env *env)
   {
     ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_2);
     ft_push_selected_value(&(*stack_a), &(*stack_b), MAX);
-    ft_swap_one_two(&(*stack_a));
-    ft_putendl("sa");
+    ft_swap_this(&(*stack_a));
   }
   else if (
   ft_get_index_value(*stack_b, MAX_3) < ft_get_index_value(*stack_b, MAX) &&
@@ -142,17 +42,16 @@ void ft_algo_opti_max(t_node **stack_a, t_node **stack_b, t_env *env)
   {
     ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_3);
     ft_push_selected_value(&(*stack_a), &(*stack_b), MAX);
-    ft_swap_one_two(&(*stack_a));
-    ft_putendl("sa");
+    ft_swap_this(&(*stack_a));
     ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_2);
-    ft_swap_one_two(&(*stack_a));
-    ft_putendl("sa");
+    ft_swap_this(&(*stack_a));
   }
   else
     ft_push_selected_value(&(*stack_a), &(*stack_b), MAX);
 }
 
-void ft_push_on_b(t_node **stack_a, t_node **stack_b, t_data *data_a, int o_len)
+static void ft_push_on_b(t_node **stack_a, t_node **stack_b,
+t_data *data_a, int o_len)
 {
   int len;
   int level;

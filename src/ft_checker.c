@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_checker.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/28 20:12:32 by vomnes            #+#    #+#             */
+/*   Updated: 2017/02/28 20:12:33 by vomnes           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "push_swap.h"
 
 # define IS_IN(x) ft_strcmp(command, x) != 0
@@ -44,7 +56,8 @@ void ft_checker_print_stacks(t_node *stack_a, t_node *stack_b)
 	ft_putstr(" >> ");
 }
 
-void ft_checker_swap_pa(char *command, t_node **stack_a, t_node **stack_b, int *shell_complexity)
+void ft_checker_swap_pa(char *command, t_node **stack_a, t_node **stack_b,
+int *shell_complexity)
 {
 	if (ft_strcmp(command, "sa") == 0)
 	{
@@ -69,7 +82,8 @@ void ft_checker_swap_pa(char *command, t_node **stack_a, t_node **stack_b, int *
 	}
 }
 
-void ft_checker_reverse_pb(char *command, t_node **stack_a, t_node **stack_b, int *shell_complexity)
+void ft_checker_reverse_pb(char *command, t_node **stack_a, t_node **stack_b,
+	int *shell_complexity)
 {
   if (ft_strcmp(command, "pb") == 0)
 	{
@@ -94,7 +108,8 @@ void ft_checker_reverse_pb(char *command, t_node **stack_a, t_node **stack_b, in
   }
 }
 
-void ft_checker_reverse_rotate(char *command, t_node **stack_a, t_node **stack_b, int *shell_complexity)
+void ft_checker_reverse_rotate(char *command, t_node **stack_a,
+	t_node **stack_b, int *shell_complexity)
 {
   if (ft_strcmp(command, "rra") == 0)
 	{
@@ -120,7 +135,8 @@ int ft_checker(t_env *env)
 	int op;
 
 	op = 0;
-	if (env->stack_a != NULL && ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
+	if (env->stack_a != NULL && ft_lst_is_sorted(env->stack_a) == 1 &&
+	env->stack_b == NULL)
 	{
 		ft_putstr(LIGHT_GREEN"OK\n"RESET);
 		return (1);
@@ -137,9 +153,9 @@ int ft_checker(t_env *env)
 				ft_putendl(RED"Error"RESET);
         return (1);
 			}
-      //ft_checker_print_stacks(env->stack_a, env->stack_b);
   }
-	if (env->stack_a != NULL && ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
+	if (env->stack_a != NULL && ft_lst_is_sorted(env->stack_a) == 1 &&
+	env->stack_b == NULL)
 	{
 		ft_putstr(LIGHT_GREEN"OK - Sorted with "RESET);
 		ft_putnbr(op);
@@ -147,8 +163,6 @@ int ft_checker(t_env *env)
 		return (1);
 	}
 	else
-	{
 		ft_putstr(RED"KO - Not sorted\n"RESET);
-	}
 	return (0);
 }

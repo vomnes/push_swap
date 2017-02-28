@@ -57,6 +57,13 @@ typedef struct    s_env
   t_data          data_b;
 }                 t_env;
 
+typedef struct    s_max
+{
+    int           max;
+    int           max_2;
+    int           max_3;
+}                 t_max;
+
 int ft_parsing_input(int argc, char **argv);
 int			get_next_line(const int fd, char **line);
 int ft_shell(t_env *env);
@@ -74,7 +81,7 @@ int ft_push_ab(t_node **stack_one, t_node **stack_two);
 
 int ft_lst_is_sorted(t_node *list);
 int ft_lst_is_revsorted(t_node *list);
-int ft_algorithm_sort(t_env *env);
+void ft_algorithm_sort(t_env *env);
 void ft_lst_bubble_sort(t_node **stack);
 void		ft_bubble_sort(int *tab, int len);
 void ft_lst_bubble_reverse_sort(t_node **stack);
@@ -87,13 +94,19 @@ int ft_lst_values(t_node *lst, t_data *val);
 int	ft_lst_median(t_node *list, t_data *data, int level);
 int ft_lst_is_under(t_node *list, int limit);
 int ft_push_min(t_node **stack_a, t_node **stack_b, int pos, int middle);
+int ft_push_max(t_node **stack_a, t_node **stack_b, int pos, int middle);
 
 int ft_max_under_max(t_node *stack, int max_less);
-int ft_max_under_max_index(t_node *stack, int max_less);
 void ft_print_stacks(t_node *stack_a, t_node *stack_b);
 int ft_checker(t_env *env);
 void ft_free_stack(t_node *stack);
 
 int ft_get_index_value(t_node *stack, int nb);
+
+void ft_push_selected_value(t_node **stack_a, t_node **stack_b, int nb);
+
+int ft_get_index_value(t_node *stack, int nb);
+void ft_push_selected_value(t_node **stack_a, t_node **stack_b, int nb);
+int ft_lst_is_over(t_node *list, int limit);
 
 #endif
