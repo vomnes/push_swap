@@ -56,25 +56,6 @@ int ft_max_under_max_index(t_node *stack, int max_less)
   return (index_val);
 }
 
-int ft_get_pos_value(t_node *stack, int nb)
-{
-  t_node *tmp;
-  int index;
-
-  tmp = stack;
-  index = 0;
-  if (tmp->data == nb)
-      return (0);
-  while (tmp != NULL && tmp->data != nb)
-  {
-    tmp = tmp->next;
-    index++;
-  }
-  if (index > ft_lst_len(stack) / 2)
-      index = ft_lst_len(stack) - index;
-  return (index);
-}
-
 int ft_get_index_value(t_node *stack, int nb)
 {
   t_node *tmp;
@@ -94,42 +75,50 @@ int ft_get_index_value(t_node *stack, int nb)
   return (index);
 }
 
+int ft_get_true_index_value(t_node *stack, int nb)
+{
+  t_node *tmp;
+  int index;
+
+  tmp = stack;
+  index = 0;
+//  if (tmp->data == nb)
+//      return (0);
+  while (tmp != NULL && tmp->data != nb)
+  {
+    tmp = tmp->next;
+    index++;
+  }
+  return (index);
+}
+
+int ft_lst_is_in(t_node *lst, int nb)
+{
+  t_node *temp;
+
+  temp = lst;
+  while (temp != NULL)
+  {
+    if (temp->data == nb)
+      return (-1);
+    temp = temp->next;
+  }
+  return (0);
+}
+
 void ft_push_selected_value(t_node **stack_a, t_node **stack_b, int nb)
 {
     int pos;
     int middle;
 
-    pos = ft_get_index_value(*stack_b, nb);
     middle = (int)(ft_lst_len(*stack_b) / 2);
-    while (ft_lst_min(*stack_b) == nb)
-      ft_push_max(&(*stack_a), &(*stack_b), pos, middle);
+    while (ft_lst_is_in(*stack_b, nb) == -1)
+    {
+        pos = ft_get_true_index_value(*stack_b, nb);
+        ft_push_max(&(*stack_a), &(*stack_b), pos, middle);
+    }
 }
-/*
-int			take_pos_opti(t_swap **pa, int number)
-{
-	int		count1;
-	int		count2;
-	t_swap	*pile;
 
-	count1 = 1;
-	count2 = 1;
-	if (number == (*pa)->nb)
-		return (count1);
-	pile = (*pa)->next;
-	while (!pile->first && pile->nb != number)
-	{
-		count1 += 1;
-		pile = pile->next;
-	}
-	pile = (*pa)->previous;
-	while (!pile->first && pile->nb != number)
-	{
-		count2 += 1;
-		pile = pile->previous;
-	}
-	return ((count1 > count2) ? count2 : count1);
-}
-*/
 int ft_algorithm_sort(t_env *env)
 {
   int middle;
@@ -141,6 +130,7 @@ int ft_algorithm_sort(t_env *env)
   int len;
   int original_len;
 
+  int max;
   int max_2;
   int max_3;
 
@@ -188,7 +178,7 @@ int ft_algorithm_sort(t_env *env)
           ft_lst_median(env->stack_a, &env->data_a, level);
         }
         pos = ft_lst_is_under(env->stack_a, env->data_a.median);
-        middle = (int)(env->data_a.len / 2);
+        middle = (int)(env->data_a.len / 2.0);
         ft_push_min(&env->stack_a, &env->stack_b, pos, middle);
     //    ft_print_stacks(env->stack_a, env->stack_b); usleep(250000);
     }
@@ -199,39 +189,42 @@ int ft_algorithm_sort(t_env *env)
           turn = 0;
           break ;
         }
-      /*  ft_lst_values(env->stack_b, &env->data_b);
-        max_2 = ft_max_under_max_index(env->stack_b, env->data_b.max);
-        max_2 = ft_max_under_max_index(env->stack_b, max_2);
-        if ((env->data_b.max > max_2) && ft_get_pos_value(env->stack_b, max_2) <
-        ft_get_pos_value(env->stack_b, env->data_b.max) &&
-        ft_get_pos_value(env->stack_b, max_2) < ft_get_pos_value(env->stack_b, max_2))
-        {
-          ft_push_selected_value(&env->stack_a, &env->stack_a, max_2);
-          ft_push_selected_value(&env->stack_a, &env->stack_a, env->data_b.max);
-          ft_swap_one_two(&env->stack_a);
-          ft_putendl("sa");
-        }
-        else if ((max_3 < env->data_b.max) && ft_get_pos_value(env->stack_b, max_3) < ft_get_pos_value(env->stack_b, env->data_b.max)
-        && ft_get_pos_value(env->stack_b, max_2) > ft_get_pos_value(env->stack_b, max_3))
-        {
-          ft_push_selected_value(&env->stack_a, &env->stack_a, max_3);
-          ft_push_selected_value(&env->stack_a, &env->stack_a, env->data_b.index_max);
-          ft_swap_one_two(&env->stack_a);
-          ft_putendl("sa");
-          ft_lst_values(env->stack_b, &env->data_b);
-          ft_push_selected_value(&env->stack_a, &env->stack_a, env->data_b.max);
-          ft_swap_one_two(&env->stack_a);
-          ft_putendl("sa");
-        }
-        else
-        {
-          ft_push_selected_value(&env->stack_a, &env->stack_a, env->data_b.max);
-        }*/ /* Work in progress */
-        ft_lst_values(env->stack_b, &env->data_b);
-        pos = env->data_b.index_max;
-        middle = (int)(ft_lst_len(env->stack_b) / 2);
-        ft_push_max(&env->stack_a, &env->stack_b, pos, middle);
-    //    ft_print_stacks(env->stack_a, env->stack_b); usleep(250000);
+            ft_lst_values(env->stack_b, &env->data_b);
+            max = env->data_b.max;
+            max_2 = ft_max_under_max(env->stack_b, max);
+            max_3 = ft_max_under_max(env->stack_b, max_2);
+            if ((max > max_2) && ft_get_index_value(env->stack_b, max_2) <
+            ft_get_index_value(env->stack_b, env->data_b.max) &&
+            ft_get_index_value(env->stack_b, max_2) < ft_get_index_value(env->stack_b, max_2))
+            {
+              ft_push_selected_value(&env->stack_a, &env->stack_b, max_2);
+              ft_push_selected_value(&env->stack_a, &env->stack_b, max);
+              ft_swap_one_two(&env->stack_a);
+              ft_putendl("sa");
+            }
+            else if ((max_3 < max) &&
+            ft_get_index_value(env->stack_b, max_3) < ft_get_index_value(env->stack_b, max) &&
+            ft_get_index_value(env->stack_b, max_2) > ft_get_index_value(env->stack_b, max_3))
+            {
+              ft_push_selected_value(&env->stack_a, &env->stack_b, max_3);
+              ft_push_selected_value(&env->stack_a, &env->stack_b, max);
+              ft_swap_one_two(&env->stack_a);
+              ft_putendl("sa");
+              ft_push_selected_value(&env->stack_a, &env->stack_b, max_2);
+              ft_swap_one_two(&env->stack_a);
+              ft_putendl("sa");
+            }
+            else
+            {
+            //  ft_putendl("Last");
+            //  ft_putnbr(max);
+              ft_push_selected_value(&env->stack_a, &env->stack_b, max);
+            } /* Work in progress */
+        //ft_lst_values(env->stack_b, &env->data_b);
+        //pos = env->data_b.index_max;
+        //middle = (int)(ft_lst_len(env->stack_b) / 2);
+        //ft_push_max(&env->stack_a, &env->stack_b, pos, middle);
+        //ft_print_stacks(env->stack_a, env->stack_b); //usleep(250000);
     }
     if (ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
     {
