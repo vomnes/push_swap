@@ -6,16 +6,16 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 11:33:43 by vomnes            #+#    #+#             */
-/*   Updated: 2017/02/22 11:33:43 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/01 12:18:43 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-void		ft_bubble_sort(int *tab, int len)
+void	ft_bubble_sort(int *tab, int len)
 {
-	int		i;
-	int		is_sort;
+	int i;
+	int	is_sort;
 
 	is_sort = 0;
 	while (is_sort == 0)
@@ -25,10 +25,10 @@ void		ft_bubble_sort(int *tab, int len)
 		while (i < len - 1)
 		{
 			if (tab[i] > tab[i + 1])
-      {
-        ft_swap(&tab[i], &tab[i + 1]);
-        is_sort = 0;
-      }
+			{
+				ft_swap(&tab[i], &tab[i + 1]);
+				is_sort = 0;
+			}
 			i++;
 		}
 	}

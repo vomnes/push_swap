@@ -6,40 +6,41 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:13:39 by vomnes            #+#    #+#             */
-/*   Updated: 2017/02/16 11:13:40 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/01 12:50:47 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-static int ft_isdigitstr(char *str)
+static int	ft_isdigitstr(char *str)
 {
-  int i;
+	int i;
 
-  i = 0;
-  while (str[i])
-  {
-    if (!(ft_isdigit(str[i])) && str[i] != '-')
-      return (-1);
-    i++;
-  }
-  return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (!(ft_isdigit(str[i])) && str[i] != '-')
+			return (-1);
+		i++;
+	}
+	return (1);
 }
 
-int ft_parsing_input(int argc, char **argv)
+int			ft_parsing_input(int argc, char **argv)
 {
-  int i;
+	int i;
 
-  i = 0;
-  while (i < argc - 1)
-  {
-    if (ft_isdigitstr(argv[i + 1]) == -1 || ft_lltoi(argv[i + 1]) >= 2147483648
-    || ft_lltoi(argv[i + 1]) < -2147483648)
-    {
-      ft_putstr("Error\n");
-      return (-1);
-    }
-    i++;
-  }
-  return (0);
+	i = 0;
+	while (i < argc - 1)
+	{
+		if (ft_isdigitstr(argv[i + 1]) == -1
+		|| ft_lltoi(argv[i + 1]) >= 2147483648
+		|| ft_lltoi(argv[i + 1]) < -2147483648)
+		{
+			ft_putstr("Error\n");
+			return (-1);
+		}
+		i++;
+	}
+	return (0);
 }
