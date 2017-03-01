@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/* Check doubles */
 static int	ft_isdigitstr(char *str)
 {
 	int i;
@@ -26,6 +26,31 @@ static int	ft_isdigitstr(char *str)
 	return (1);
 }
 
+static int ft_check_double(int len, char **argv)
+{
+	int		*tab;
+	int		i;
+
+	if (!(tab = (int*)malloc(sizeof(tab) * len)))
+		return (-1);
+	i = 0;
+	while (i < len)
+	{
+		tab[i] = ft_lltoi(argv[i + 1]);
+		i++;
+	}
+	ft_bubble_sort(tab, len);
+	i = 0;
+	while (i < len)
+	{
+		if (tab[i] == tab[i - 1])
+					return (-1);
+		i++;
+	}
+	free(tab);
+	return (0);
+}
+
 int			ft_parsing_input(int argc, char **argv)
 {
 	int i;
@@ -37,10 +62,15 @@ int			ft_parsing_input(int argc, char **argv)
 		|| ft_lltoi(argv[i + 1]) >= 2147483648
 		|| ft_lltoi(argv[i + 1]) < -2147483648)
 		{
-			ft_putstr("Error\n");
+			ft_putendl_fd("Error", 2);
 			return (-1);
 		}
 		i++;
+	}
+	if (ft_check_double(argc - 1, argv) == -1)
+	{
+		ft_putendl_fd("Error", 2);
+		return (-1);
 	}
 	return (0);
 }

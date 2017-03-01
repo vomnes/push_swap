@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 
 	len_arg = argc - 1;
 	i = len_arg;
-	if (argc == 0)
+	if (argc == 1)
 		return (0);
 	if (ft_parsing_input(argc, argv) == -1)
 		return (-1);
