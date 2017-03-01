@@ -20,18 +20,24 @@ int	main(int argc, char **argv)
 
 	len_arg = argc - 1;
 	i = len_arg;
-	if (argc == 0)
+	if (argc == 1)
 		return (0);
-	if (ft_parsing_input(argc, argv) == -1)
+	env.flg_print = 0;
+	env.frame_rate = 250000;
+	if (ft_strcmp(argv[1], "-p") == 0 || ft_strcmp(argv[1], "-print") == 0)
+      env.flg_print = 1;
+	if (ft_parsing_input(argc, argv, env.flg_print) == -1)
 		return (-1);
 	env.stack_a = NULL;
 	env.stack_b = NULL;
-	while (i)
+	while (i > env.flg_print)
 	{
 		if (!(ft_push_front(&env.stack_a, ft_atoi(argv[i]))))
 			return (-1);
 		i--;
 	}
+//	if (env.flg_print == 1)
+//			ft_putendl("Print push_swap : [on]");
 	if (ft_lst_len(env.stack_a) <= 6)
 	{
 		if (ft_big_bubble_sort(&env.stack_a, &env.stack_b, &env) == -1)

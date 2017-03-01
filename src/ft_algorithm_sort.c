@@ -33,22 +33,22 @@ static void		ft_algo_opti_max(t_node **stack_a, t_node **stack_b, t_env *env)
 	&& ft_get_index_value(*stack_b, MAX_2) <
 	ft_get_index_value(*stack_b, MAX_3))
 	{
-		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_2);
-		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX);
+		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_2, env);
+		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX, env);
 		ft_swap_this(&(*stack_a));
 	}
 	else if (
 	ft_get_index_value(*stack_b, MAX_3) < ft_get_index_value(*stack_b, MAX) &&
 	ft_get_index_value(*stack_b, MAX_2) > ft_get_index_value(*stack_b, MAX_3))
 	{
-		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_3);
-		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX);
+		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_3, env);
+		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX, env);
 		ft_swap_this(&(*stack_a));
-		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_2);
+		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_2, env);
 		ft_swap_this(&(*stack_a));
 	}
 	else
-		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX);
+		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX, env);
 }
 
 static void		ft_push_on_b(t_node **stack_a, t_node **stack_b,
@@ -91,7 +91,11 @@ t_env *env, int o_len)
 			break ;
 		}
 		ft_push_on_b(&(*stack_a), &(*stack_b), &env->data_a, o_len);
-		//ft_print_stacks(env->stack_a, env->stack_b, 0); usleep(250000);
+		if (env->flg_print == 1)
+		{
+			ft_print_stacks(env->stack_a, env->stack_b, 0);
+			usleep(env->frame_rate);
+		}
 	}
 }
 
@@ -113,7 +117,6 @@ void			ft_algorithm_sort(t_env *env)
 				break ;
 			ft_lst_values(env->stack_b, &env->data_b);
 			ft_algo_opti_max(&env->stack_a, &env->stack_b, env);
-			//ft_print_stacks(env->stack_a, env->stack_b, 0); //usleep(250000);
 		}
 		if (ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
 			break ;

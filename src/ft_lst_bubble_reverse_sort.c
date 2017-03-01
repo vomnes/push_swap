@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static int	ft_lst_basic_bubble_sort(t_node **stack)
+static int	ft_lst_basic_bubble_sort(t_node **stack, t_env *env)
 {
 	t_node *tmp;
 
@@ -31,11 +31,16 @@ static int	ft_lst_basic_bubble_sort(t_node **stack)
 			ft_rotate(&(*stack));
 			ft_putendl("rb");
 		}
+		if (env->flg_print == 1)
+		{
+			ft_print_stacks(env->stack_a, env->stack_b, 0);
+			usleep(env->frame_rate);
+		}
 	}
 	return (1);
 }
 
-static int	ft_lst_rev_bubble_sort(t_node **stack)
+static int	ft_lst_rev_bubble_sort(t_node **stack, t_env *env)
 {
 	t_node *tmp;
 
@@ -54,11 +59,16 @@ static int	ft_lst_rev_bubble_sort(t_node **stack)
 			ft_reverse_rotate(&(*stack));
 			ft_putendl("rrb");
 		}
+		if (env->flg_print == 1)
+		{
+			ft_print_stacks(env->stack_a, env->stack_b, 0);
+			usleep(env->frame_rate);
+		}
 	}
 	return (1);
 }
 
-void		ft_lst_bubble_reverse_sort(t_node **stack)
+void		ft_lst_bubble_reverse_sort(t_node **stack, t_env *env)
 {
 	int min;
 	int max;
@@ -72,6 +82,11 @@ void		ft_lst_bubble_reverse_sort(t_node **stack)
 			ft_swap_one_two(&(*stack));
 			ft_putendl("sb");
 		}
+		if (env->flg_print == 1)
+		{
+			ft_print_stacks(env->stack_a, env->stack_b, 0);
+			usleep(env->frame_rate);
+		}
 	}
 	if (ft_lst_len(*stack) == 3)
 	{
@@ -80,8 +95,8 @@ void		ft_lst_bubble_reverse_sort(t_node **stack)
 		if (((*stack)->next->data == min && (*stack)->next->next->data == max)
 		|| ((*stack)->next->data == max && (*stack)->next->next->data == min)
 		|| ((*stack)->next->next->data == max && (*stack)->data == min))
-			ft_lst_rev_bubble_sort(&(*stack));
+			ft_lst_rev_bubble_sort(&(*stack), env);
 		else
-			ft_lst_basic_bubble_sort(&(*stack));
+			ft_lst_basic_bubble_sort(&(*stack), env);
 	}
 }

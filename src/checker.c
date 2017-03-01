@@ -31,9 +31,12 @@ int	main(int argc, char **argv)
 		return (-1);
 	env.stack_a = NULL;
 	env.stack_b = NULL;
-  get_next_line(0, &input);
-  if (ft_strcmp(input, "Print push_swap : [on]") == 0)
-    return (0);
+	(void)input;
+  /*if (get_next_line(0, &input) > 0)
+	{
+		if (ft_strcmp(input, "Print push_swap : [on]") == 0)
+			return (0);
+	}*/
 	while (i > flag)
 	{
 		if (!(ft_push_front(&env.stack_a, ft_atoi(argv[i]))))

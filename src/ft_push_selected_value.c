@@ -41,7 +41,7 @@ static int	ft_get_true_index_value(t_node *stack, int nb)
 	return (index);
 }
 
-void		ft_push_selected_value(t_node **stack_a, t_node **stack_b, int nb)
+void		ft_push_selected_value(t_node **stack_a, t_node **stack_b, int nb, t_env *env)
 {
 	int	pos;
 	int	middle;
@@ -51,5 +51,10 @@ void		ft_push_selected_value(t_node **stack_a, t_node **stack_b, int nb)
 	{
 		pos = ft_get_true_index_value(*stack_b, nb);
 		ft_push_max(&(*stack_a), &(*stack_b), pos, middle);
+		if (env->flg_print == 1)
+		{
+			ft_print_stacks(env->stack_a, env->stack_b, 0);
+			usleep(env->frame_rate);
+		}
 	}
 }
