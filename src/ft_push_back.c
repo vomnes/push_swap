@@ -19,7 +19,7 @@ int ft_push_back(t_node **lst_head, int number)
   while (new_node->next != NULL)
     new_node = new_node->next;
   if (!(new_node->next = (t_node*)malloc(sizeof(t_node))))
-    return (-1);
+    exit (-1);
   new_node->next->data = number;
   new_node->next->next = NULL;
   return (1);

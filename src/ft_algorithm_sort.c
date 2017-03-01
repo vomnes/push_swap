@@ -90,7 +90,7 @@ int o_len)
         break ;
       }
       ft_push_on_b(&(*stack_a), &(*stack_b), &env->data_a, o_len);
-  //    ft_print_stacks(env->stack_a, env->stack_b); usleep(250000);
+  //    ft_print_stacks(env->stack_a, env->stack_b, 0); usleep(250000);
   }
 }
 
@@ -112,7 +112,7 @@ void ft_algorithm_sort(t_env *env)
             break ;
         ft_lst_values(env->stack_b, &env->data_b);
         ft_algo_opti_max(&env->stack_a, &env->stack_b, env);
-        //ft_print_stacks(env->stack_a, env->stack_b); //usleep(250000);
+        //ft_print_stacks(env->stack_a, env->stack_b, 0); //usleep(250000);
     }
     if (ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
       break ;

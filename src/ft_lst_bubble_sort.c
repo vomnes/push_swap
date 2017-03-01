@@ -12,7 +12,7 @@
 
 # include "push_swap.h"
 
-int ft_lst_basic_bubble_sort(t_node **stack)
+static int ft_lst_basic_bubble_sort(t_node **stack)
 {
   t_node *tmp;
 
@@ -35,7 +35,7 @@ int ft_lst_basic_bubble_sort(t_node **stack)
   return (1);
 }
 
-int ft_lst_rev_bubble_sort(t_node **stack)
+static int ft_lst_rev_bubble_sort(t_node **stack)
 {
   t_node *tmp;
 

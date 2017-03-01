@@ -38,6 +38,6 @@ int main(int argc, char **argv)
         return (-1);
     }
     else
-        ft_algorithm_sort(&env);//ft_algorithm_sort(&env);
+        ft_algorithm_sort(&env);
     return (0);
 }

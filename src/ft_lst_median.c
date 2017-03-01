@@ -21,7 +21,7 @@ int	ft_lst_median(t_node *list, t_data *data, int level)
 
   len = ft_lst_len(list);
   if (!(tab = (int*)malloc(sizeof(tab) * len)))
-      return (-1);
+      exit (-1);
 	temp = list;
   i = 0;
 	while (temp != NULL)

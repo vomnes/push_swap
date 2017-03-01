@@ -23,11 +23,9 @@ int main(int argc, char **argv)
     i = len_arg;
     if (argc == 0)
       return (0);
-    if (!(env.stack_a = (t_node*)malloc(sizeof(t_node))))
+    if (ft_parsing_input(argc, argv) == -1)
       return (-1);
     env.stack_a = NULL;
-    if (!(env.stack_b = (t_node*)malloc(sizeof(t_node))))
-      return (-1);
     env.stack_b = NULL;
     while (i)
     {

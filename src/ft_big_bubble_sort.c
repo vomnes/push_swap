@@ -12,7 +12,7 @@
 
 # include "push_swap.h"
 
-int ft_lst_is_under_median(t_node *list, int limit)
+static int ft_lst_is_under_median(t_node *list, int limit)
 {
   t_node *temp;
   int index;
@@ -29,7 +29,7 @@ int ft_lst_is_under_median(t_node *list, int limit)
   return(-1);
 }
 
-void ft_push_under_median(t_node **stack_a, t_node **stack_b, t_env *env)
+static void ft_push_under_median(t_node **stack_a, t_node **stack_b, t_env *env)
 {
   if ((*stack_a)->data > (*stack_a)->next->data &&
   (*stack_a)->next->data < env->data_a.median)
@@ -39,7 +39,7 @@ void ft_push_under_median(t_node **stack_a, t_node **stack_b, t_env *env)
   }
 }
 
-void ft_back_on_a(t_node **stack_a, t_node **stack_b)
+static void ft_back_on_a(t_node **stack_a, t_node **stack_b)
 {
   while ((*stack_b) != NULL)
   {
