@@ -16,7 +16,7 @@ int	ft_reverse_rotate(t_node **lst_head)
 {
 	int last_to_first;
 
-	if (*lst_head != NULL)
+	if (*lst_head != NULL && (*lst_head)->next != NULL)
 	{
 		last_to_first = -1;
 		last_to_first = ft_delete_last(&(*lst_head));
