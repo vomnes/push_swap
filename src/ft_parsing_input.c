@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/* Check doubles */
+
 static int	ft_isdigitstr(char *str)
 {
 	int i;
@@ -26,24 +26,27 @@ static int	ft_isdigitstr(char *str)
 	return (1);
 }
 
-static int ft_check_double(int len, char **argv)
+static int ft_check_double(int len, char **argv, int start)
 {
 	int		*tab;
 	int		i;
+	int		i_argv;
 
 	if (!(tab = (int*)malloc(sizeof(tab) * len)))
 		return (-1);
 	i = 0;
+	i_argv = start;
 	while (i < len)
 	{
-		tab[i] = ft_lltoi(argv[i + 1]);
+		tab[i] = ft_lltoi(argv[i_argv + 1]);
 		i++;
+		i_argv++;
 	}
 	ft_bubble_sort(tab, len);
 	i = 0;
 	while (i < len)
 	{
-		if (tab[i] == tab[i - 1])
+		if (tab[i] == tab[i + 1])
 					return (-1);
 		i++;
 	}
@@ -51,11 +54,11 @@ static int ft_check_double(int len, char **argv)
 	return (0);
 }
 
-int			ft_parsing_input(int argc, char **argv)
+int			ft_parsing_input(int argc, char **argv, int start)
 {
 	int i;
 
-	i = 0;
+	i = start;
 	while (i < argc - 1)
 	{
 		if (ft_isdigitstr(argv[i + 1]) == -1
@@ -67,7 +70,7 @@ int			ft_parsing_input(int argc, char **argv)
 		}
 		i++;
 	}
-	if (ft_check_double(argc - 1, argv) == -1)
+	if (ft_check_double(argc - 1 - start, argv, start) == -1)
 	{
 		ft_putendl_fd("Error", 2);
 		return (-1);

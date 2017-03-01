@@ -17,22 +17,32 @@ int	main(int argc, char **argv)
 	int		i;
 	t_env	env;
 	int		len_arg;
+  short flag;
+  char *input;
 
 	len_arg = argc - 1;
 	i = len_arg;
+  flag = 0;
 	if (argc == 1)
 		return (0);
-	if (ft_parsing_input(argc, argv) == -1)
+  if (ft_strcmp(argv[1], "-s") == 0 || ft_strcmp(argv[1], "-shell") == 0)
+      flag = 1;
+	if (ft_parsing_input(argc, argv, flag) == -1)
 		return (-1);
 	env.stack_a = NULL;
 	env.stack_b = NULL;
-	while (i)
+  get_next_line(0, &input);
+  if (ft_strcmp(input, "Print push_swap : [on]") == 0)
+    return (0);
+	while (i > flag)
 	{
 		if (!(ft_push_front(&env.stack_a, ft_atoi(argv[i]))))
 			return (-1);
 		i--;
 	}
-	ft_checker(&env);
-	//ft_shell(&env);
+  if (flag == 1)
+      ft_shell(&env);
+  else
+      ft_checker(&env);
 	return (0);
 }
