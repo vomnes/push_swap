@@ -31,7 +31,7 @@
 #define RESET   "\x1b[0m"
 #define CLEAN ft_putstr("\033[H\033[2J");
 
-# define ABS(x) ((x < 0) ? -x : x)
+# define IS_IN(x) ft_strcmp(command, x) != 0
 
 typedef struct  s_data
 {
@@ -55,6 +55,7 @@ typedef struct    s_env
   t_data          data_a;
   t_node          *stack_b;
   t_data          data_b;
+  int             op;
 }                 t_env;
 
 typedef struct    s_max
@@ -66,7 +67,6 @@ typedef struct    s_max
 
 int ft_parsing_input(int argc, char **argv);
 int			get_next_line(const int fd, char **line);
-int ft_shell(t_env *env);
 int ft_delete_last(t_node **lst_head);
 
 int ft_push_front(t_node **lst_head, int number);
@@ -97,7 +97,7 @@ int ft_push_min(t_node **stack_a, t_node **stack_b, int pos, int middle);
 int ft_push_max(t_node **stack_a, t_node **stack_b, int pos, int middle);
 
 int ft_max_under_max(t_node *stack, int max_less);
-void ft_print_stacks(t_node *stack_a, t_node *stack_b);
+void ft_print_stacks(t_node *stack_a, t_node *stack_b, short flag);
 int ft_checker(t_env *env);
 void ft_free_stack(t_node *stack);
 
@@ -108,5 +108,12 @@ void ft_push_selected_value(t_node **stack_a, t_node **stack_b, int nb);
 int ft_get_index_value(t_node *stack, int nb);
 void ft_push_selected_value(t_node **stack_a, t_node **stack_b, int nb);
 int ft_lst_is_over(t_node *list, int limit);
+
+void ft_shell_help(char *command);
+int ft_shell(t_env *env);
+void ft_operations_print(char *command, t_node **stack_a, t_node **stack_b, \
+  t_env *env);
+void ft_operations(char *command, t_node **stack_a, t_node **stack_b, \
+  t_env *env);
 
 #endif

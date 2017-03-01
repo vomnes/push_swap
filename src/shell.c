@@ -6,13 +6,13 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 18:09:25 by vomnes            #+#    #+#             */
-/*   Updated: 2017/02/19 18:09:26 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/01 14:43:24 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-static int ft_check_command(char *command, int op)
+static int	ft_check_command(char *command, int op)
 {
 	if (ft_strcmp(command, "exit") == 0)
 		return (1);
@@ -35,7 +35,7 @@ static int ft_check_command(char *command, int op)
 	return (0);
 }
 
-static int ft_put_command(char *command, t_node **stack_a, t_node **stack_b, \
+static int	ft_put_command(char *command, t_node **stack_a, t_node **stack_b, \
 	int op)
 {
 	if (ft_strcmp(command, "print") == 0)
@@ -50,9 +50,9 @@ static int ft_put_command(char *command, t_node **stack_a, t_node **stack_b, \
 	return (0);
 }
 
-int ft_shell(t_env *env)
+int			ft_shell(t_env *env)
 {
-  char *command;
+	char *command;
 
 	CLEAN
 	ft_printf("Push_Swap Shell\nCommand : help - print - sa sb ss pa pb ra rb\
@@ -64,13 +64,13 @@ int ft_shell(t_env *env)
 		ft_putstr(LIGHT_GREEN"Already sorted\n"RESET);
 		return (1);
 	}
-  while (get_next_line(0, &command) > 0)
-  {
-			ft_operations_print(command, &env->stack_a, &env->stack_b, env);
-			if (ft_put_command(command, &env->stack_a, &env->stack_b, env->op) == 1)
-					return (1);
-			if (ft_check_command(command, env->op) == 1)
-					return (1);
-  }
+	while (get_next_line(0, &command) > 0)
+	{
+		ft_operations_print(command, &env->stack_a, &env->stack_b, env);
+		if (ft_put_command(command, &env->stack_a, &env->stack_b, env->op) == 1)
+			return (1);
+		if (ft_check_command(command, env->op) == 1)
+			return (1);
+	}
 	return (0);
 }
