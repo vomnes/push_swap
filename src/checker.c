@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	int		i;
 	t_env	env;
-	char	*command;
 	int		len_arg;
 
 	len_arg = argc - 1;

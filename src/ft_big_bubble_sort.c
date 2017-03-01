@@ -29,12 +29,12 @@ static int	ft_lst_is_under_median(t_node *list, int limit)
 	return (-1);
 }
 
-static void	ft_push_under_median(t_node **stack_a, t_node **stack_b, t_env *env)
+static void	ft_push_under_median(t_node **stack, t_env *env)
 {
-	if ((*stack_a)->data > (*stack_a)->next->data &&
-	(*stack_a)->next->data < env->data_a.median)
+	if ((*stack)->data > (*stack)->next->data &&
+	(*stack)->next->data < env->data_a.median)
 	{
-		ft_swap_one_two(&(*stack_a));
+		ft_swap_one_two(&(*stack));
 		ft_putendl("sa");
 	}
 }
@@ -63,7 +63,7 @@ int			ft_big_bubble_sort(t_node **stack_a, t_node **stack_b, t_env *env)
 			return (-1);
 		while (ft_lst_min(*stack_a) < env->data_a.median)
 		{
-			ft_push_under_median(&(*stack_a), &(*stack_b), env);
+			ft_push_under_median(&(*stack_a), env);
 			pos = ft_lst_is_under_median(*stack_a, env->data_a.median);
 			middle = (int)(env->data_a.len / 2);
 			ft_push_min(&(*stack_a), &(*stack_b), pos, middle);
