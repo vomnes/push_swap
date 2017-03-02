@@ -19,4 +19,9 @@ void	ft_update_spe(t_env *env)
 		ft_print_stacks(env->stack_a, env->stack_b, 0);
 		usleep(env->spe.frame_rate);
 	}
+	if (env->spe.flg_visual == 1)
+	{
+		ft_graphics(env->stack_a, env->stack_b, env);
+		sleep(3);
+	}
 }
