@@ -12,6 +12,9 @@
 
 # include "push_swap.h"
 
+#define MIN env->spe.min
+#define MAX env->spe.max
+
 static void	ft_mem_pixel_img(char *mlx_data, int size_line, unsigned int x, \
 unsigned int y, int color)
 {
@@ -70,19 +73,22 @@ int ft_graphics(t_node *stack_a, t_node *stack_b, t_env *env)
   tmp_b = stack_b;
   len = env->spe.len;
   x0 = 0;
-  x1 = 0;
+	width = 2000 / len;
+	x1 = width;
   while (tmp_a != NULL)
   {
-    width = 2000 / len;
-    length = 1000 - (1000 / tmp_a->data) + (1000 / 10);
+		length = tmp_a->data * (1000 / MAX) - MIN;
     ft_printf(">> data :: %d | width :: %d || length :: %D\n", tmp_a->data, width, length);
-    ft_draw_rectangle(x0, 1000 - length, x1, 1000, env->img.mlx_data, \
+		ft_printf("x0 >> %d | y0 >> %d | x1 >> %d | y1 >> %d\n", x0, 1010 - length, x1, 1000);
+		ft_draw_rectangle(0, 600, 166, 1000, env->img.mlx_data, env->img.size_line, COLOR_GOLD);
+    ft_draw_rectangle(x0, 1010 - length, x1, 1010, env->img.mlx_data, \
     env->img.size_line, COLOR_GOLD);
-    x0 += width;
-    x1 += width;
+		sleep(1);
+    x0 = x0 + width;
+    x1 = x1 + width;
     tmp_a = tmp_a->next;
   }
-	mlx_clear_window(env->img.mlx, env->img.win); // Expose hook ??
+	mlx_clear_window(env->img.mlx, env->img.win);
 	mlx_put_image_to_window(env->img.mlx, env->img.win, env->img.img, 0, 0);
 	mlx_destroy_image(env->img.mlx, env->img.img);
   return (0);
