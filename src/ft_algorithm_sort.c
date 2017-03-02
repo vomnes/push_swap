@@ -91,11 +91,7 @@ t_env *env, int o_len)
 			break ;
 		}
 		ft_push_on_b(&(*stack_a), &(*stack_b), &env->data_a, o_len);
-		if (env->flg_print == 1)
-		{
-			ft_print_stacks(env->stack_a, env->stack_b, 0);
-			usleep(env->frame_rate);
-		}
+		ft_update_spe(env);
 	}
 }
 

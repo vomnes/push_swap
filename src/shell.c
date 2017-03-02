@@ -18,7 +18,7 @@ static int	ft_check_command(char *command, int op)
 		return (1);
 	if (ft_strcmp(command, "clear") == 0)
 	{
-		CLEAN
+		ft_putstr(CLEAR);
 		ft_putstr(" >> ");
 	}
 	if (ft_strcmp(command, "op") == 0)
@@ -36,7 +36,7 @@ static int	ft_check_command(char *command, int op)
 }
 
 static int	ft_put_command(char *command, t_node **stack_a, t_node **stack_b, \
-	int op)
+int op)
 {
 	if (ft_strcmp(command, "print") == 0)
 		ft_print_stacks(*stack_a, *stack_b, 1);
@@ -54,12 +54,13 @@ int			ft_shell(t_env *env)
 {
 	char *command;
 
-	CLEAN
-	ft_printf("Push_Swap Shell\nCommand : help - print - sa sb ss pa pb ra rb\
+	ft_putstr(CLEAR);
+	ft_printf("Push_Swap Shell\nCommand : help - print - sa sb ss pa pb ra rb \
 	rr rra rrb rrr - exit\n-> Stack a and stack b :\n");
 	ft_print_stacks(env->stack_a, env->stack_b, 1);
 	env->op = 0;
-	if (env->stack_a != NULL && ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
+	if (env->stack_a != NULL && ft_lst_is_sorted(env->stack_a) == 1 && \
+	env->stack_b == NULL)
 	{
 		ft_putstr(LIGHT_GREEN"Already sorted\n"RESET);
 		return (1);

@@ -36,6 +36,7 @@ static void	ft_push_under_median(t_node **stack, t_env *env)
 	{
 		ft_swap_one_two(&(*stack));
 		ft_putendl("sa");
+		ft_update_spe(env);
 	}
 }
 
@@ -45,11 +46,7 @@ static void	ft_back_on_a(t_node **stack_a, t_node **stack_b, t_env *env)
 	{
 		ft_push_ab(&(*stack_b), &(*stack_a));
 		ft_putendl("pa");
-		if (env->flg_print == 1)
-		{
-			ft_print_stacks(env->stack_a, env->stack_b, 0);
-			usleep(env->frame_rate);
-		}
+		ft_update_spe(env);
 	}
 }
 
@@ -59,11 +56,7 @@ int			ft_big_bubble_sort(t_node **stack_a, t_node **stack_b, t_env *env)
 	int pos;
 	int middle;
 
-	if (env->flg_print == 1)
-	{
-		ft_print_stacks(env->stack_a, env->stack_b, 0);
-		usleep(env->frame_rate);
-	}
+	ft_update_spe(env);
 	len = ft_lst_len(*stack_a);
 	if (len <= 3)
 		ft_lst_bubble_sort(&(*stack_a), env);
@@ -77,11 +70,7 @@ int			ft_big_bubble_sort(t_node **stack_a, t_node **stack_b, t_env *env)
 			pos = ft_lst_is_under_median(*stack_a, env->data_a.median);
 			middle = (int)(env->data_a.len / 2);
 			ft_push_min(&(*stack_a), &(*stack_b), pos, middle);
-			if (env->flg_print == 1)
-			{
-				ft_print_stacks(env->stack_a, env->stack_b, 0);
-				usleep(env->frame_rate);
-			}
+			ft_update_spe(env);
 		}
 		ft_lst_bubble_sort(&(*stack_a), env);
 		ft_lst_bubble_reverse_sort(&(*stack_b), env);

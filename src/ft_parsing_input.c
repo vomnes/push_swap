@@ -6,7 +6,7 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:13:39 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/01 12:50:47 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/02 11:46:46 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_isdigitstr(char *str)
 	return (1);
 }
 
-static int ft_check_double(int len, char **argv, int start)
+static int	ft_check_double(int len, char **argv, int start)
 {
 	int		*tab;
 	int		i;
@@ -47,7 +47,7 @@ static int ft_check_double(int len, char **argv, int start)
 	while (i < len)
 	{
 		if (tab[i] == tab[i + 1])
-					return (-1);
+			return (-1);
 		i++;
 	}
 	free(tab);

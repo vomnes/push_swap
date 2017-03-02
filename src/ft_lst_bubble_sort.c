@@ -31,11 +31,7 @@ static int	ft_lst_basic_bubble_sort(t_node **stack, t_env *env)
 			ft_rotate(&(*stack));
 			ft_putendl("ra");
 		}
-		if (env->flg_print == 1)
-		{
-			ft_print_stacks(env->stack_a, env->stack_b, 0);
-			usleep(env->frame_rate);
-		}
+		ft_update_spe(env);
 	}
 	return (1);
 }
@@ -59,11 +55,7 @@ static int	ft_lst_rev_bubble_sort(t_node **stack, t_env *env)
 			ft_reverse_rotate(&(*stack));
 			ft_putendl("rra");
 		}
-		if (env->flg_print == 1)
-		{
-			ft_print_stacks(env->stack_a, env->stack_b, 0);
-			usleep(env->frame_rate);
-		}
+		ft_update_spe(env);
 	}
 	return (1);
 }
@@ -88,11 +80,7 @@ void		ft_lst_bubble_sort(t_node **stack, t_env *env)
 		{
 			ft_swap_one_two(&(*stack));
 			ft_putendl("sa");
-			if (env->flg_print == 1)
-			{
-				ft_print_stacks(env->stack_a, env->stack_b, 0);
-				usleep(env->frame_rate);
-			}
+			ft_update_spe(env);
 		}
 		else
 			ft_lst_basic_bubble_sort(&(*stack), env);

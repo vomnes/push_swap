@@ -34,7 +34,8 @@ SRC = ./src/ft_algorithm_sort.c \
 			./src/ft_shell_help.c \
 			./src/ft_swap_one_two.c \
 			./src/get_next_line.c \
-			./src/shell.c
+			./src/shell.c \
+			./src/ft_update_spe.c
 PUSH_SWAP_C = ./src/push_swap.c
 CHECKER_C = ./src/checker.c
 OBJ = $(SRC:.c=.o)
