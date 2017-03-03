@@ -17,9 +17,11 @@ static int	ft_isdigitstr(char *str)
 	int i;
 
 	i = 0;
+	if (str[i] == '-')
+		i++;
 	while (str[i])
 	{
-		if (!(ft_isdigit(str[i])) && str[i] != '-')
+		if (!(ft_isdigit(str[i])))
 			return (-1);
 		i++;
 	}
@@ -61,8 +63,12 @@ int			ft_parsing_input(int argc, char **argv, int start)
 	i = start;
 	while (i < argc - 1)
 	{
-		if (ft_isdigitstr(argv[i + 1]) == -1
-		|| ft_lltoi(argv[i + 1]) >= 2147483648
+		if (ft_isdigitstr(argv[i + 1]) == -1)
+		{
+			ft_putendl_fd("Error", 2);
+			return (-1);
+		}
+		else if (ft_lltoi(argv[i + 1]) >= 2147483648
 		|| ft_lltoi(argv[i + 1]) < -2147483648
 		|| ft_strcmp(argv[i + 1], "-") == 0)
 		{

@@ -70,7 +70,11 @@ static int	ft_init_spe(t_env *env)
 
 static int	ft_run_sort(t_env *env)
 {
-	if (env->spe.len <= 6)
+	if (ft_lst_is_sorted(env->stack_a) == 1)
+	{
+		ft_update_spe(env);
+	}
+	else if (env->spe.len <= 6)
 	{
 		if (ft_big_bubble_sort(&env->stack_a, &env->stack_b, env) == -1)
 			return (-1);
