@@ -16,10 +16,11 @@
 #define MAX_2 val.max_2
 #define MAX_3 val.max_3
 
-static void		ft_swap_this(t_node **stack_a)
+static void		ft_swap_this(t_node **stack_a, t_env *env)
 {
 	ft_swap_one_two(&(*stack_a));
 	ft_putendl("sa");
+	ft_update_spe(env);
 }
 
 static void		ft_algo_opti_max(t_node **stack_a, t_node **stack_b, t_env *env)
@@ -35,7 +36,7 @@ static void		ft_algo_opti_max(t_node **stack_a, t_node **stack_b, t_env *env)
 	{
 		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_2, env);
 		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX, env);
-		ft_swap_this(&(*stack_a));
+		ft_swap_this(&(*stack_a), env);
 	}
 	else if (
 	ft_get_index_value(*stack_b, MAX_3) < ft_get_index_value(*stack_b, MAX) &&
@@ -43,9 +44,9 @@ static void		ft_algo_opti_max(t_node **stack_a, t_node **stack_b, t_env *env)
 	{
 		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_3, env);
 		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX, env);
-		ft_swap_this(&(*stack_a));
+		ft_swap_this(&(*stack_a), env);
 		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX_2, env);
-		ft_swap_this(&(*stack_a));
+		ft_swap_this(&(*stack_a), env);
 	}
 	else
 		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX, env);

@@ -6,7 +6,7 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:59:07 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/02 11:51:49 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/03 15:24:32 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ static int	ft_opt_parsing(t_env *env, int argc, char **argv)
 		env->spe.flg_print = 1;
 	if (ft_strcmp(argv[1], "-v") == 0 || ft_strcmp(argv[1], "-visual") == 0)
 		env->spe.flg_visual = 1;
-	if (ft_parsing_input(argc, argv, env->spe.flg_print + env->spe.flg_visual) == -1)
+	if (ft_parsing_input(argc, argv, env->spe.flg_print +\
+	env->spe.flg_visual) == -1)
 		return (-1);
 	env->spe.len = argc - env->spe.flg_print - env->spe.flg_visual;
 	return (0);
 }
 
-static char **ft_malloc_tab(char **tab, int max, int len)
+static char	**ft_malloc_tab(char **tab, int max, int len)
 {
 	int i;
 
@@ -49,16 +50,33 @@ static char **ft_malloc_tab(char **tab, int max, int len)
 	return (tab);
 }
 
-static void ft_init_spe(t_env *env)
+static int	ft_init_spe(t_env *env)
 {
 	env->spe.max = ft_lst_max(env->stack_a);
 	env->spe.min = ft_lst_min(env->stack_a);
 	env->spe.len = ft_lst_len(env->stack_a);
-	if (env->spe.min < 0 || env->spe.max <= 0 || env->spe.max > 150)
+	if (env->spe.min <= 0 || env->spe.max <= 0 || env->spe.max > 100)
 		env->spe.flg_visual = 0;
 	else
-		env->spe.tab_visual = ft_malloc_tab(env->spe.tab_visual, \
-		env->spe.max, env->spe.len);
+	{
+		if (!(env->spe.tab_visual = ft_malloc_tab(env->spe.tab_visual, \
+		env->spe.max, env->spe.len)))
+			return (-1);
+	}
+	return (0);
+}
+
+static void	ft_free_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	if (*tab)
+	{
+		while (tab[i])
+			ft_strdel(&tab[i]);
+		ft_strdel(tab);
+	}
 }
 
 int			main(int argc, char **argv)
@@ -78,9 +96,8 @@ int			main(int argc, char **argv)
 	while (i > (env.spe.flg_print + env.spe.flg_visual))
 		if (!(ft_push_front(&env.stack_a, ft_atoi(argv[i--]))))
 			return (-1);
-	if (env.spe.flg_print == 1)
-		ft_putendl("Print push_swap : [on]");
-	ft_init_spe(&env);
+	if (ft_init_spe(&env) == -1)
+		return (-1);
 	if (env.spe.len <= 6)
 	{
 		if (ft_big_bubble_sort(&env.stack_a, &env.stack_b, &env) == -1)
@@ -88,5 +105,7 @@ int			main(int argc, char **argv)
 	}
 	else
 		ft_algorithm_sort(&env);
+	if (env.spe.flg_visual == 1)
+		ft_free_tab(env.spe.tab_visual);
 	return (0);
 }
