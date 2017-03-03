@@ -6,7 +6,7 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:32:19 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/01 12:14:27 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/03 16:33:01 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void		ft_algo_opti_max(t_node **stack_a, t_node **stack_b, t_env *env)
 		ft_push_selected_value(&(*stack_a), &(*stack_b), MAX, env);
 }
 
-static void		ft_push_on_b(t_node **stack_a, t_node **stack_b,
+static int		ft_push_on_b(t_node **stack_a, t_node **stack_b,
 t_data *data_a, int o_len)
 {
 	int len;
@@ -72,11 +72,13 @@ t_data *data_a, int o_len)
 		else
 			level = ((1.0 / 62.0) * len + 4.8 / 2.3) + 0.5;
 		level = (level < 2) ? 2 : level;
-		ft_lst_median(*stack_a, &(*data_a), level);
+		if (ft_lst_median(*stack_a, &(*data_a), level) == -1)
+			return (-1);
 	}
 	pos = ft_lst_is_under(*stack_a, data_a->median);
 	middle = (int)(data_a->len / 2);
 	ft_push_min(&(*stack_a), &(*stack_b), pos, middle);
+	return (0);
 }
 
 static void		ft_push_on_b_while(t_node **stack_a, t_node **stack_b, \
@@ -96,7 +98,7 @@ t_env *env, int o_len)
 	}
 }
 
-void			ft_algorithm_sort(t_env *env)
+int				ft_algorithm_sort(t_env *env)
 {
 	int level;
 	int original_len;
@@ -104,7 +106,8 @@ void			ft_algorithm_sort(t_env *env)
 	original_len = ft_lst_len(env->stack_a);
 	level = ((1.0 / 75.0) * original_len + 5.0 / 2.9) + 0.5;
 	level = (level < 2) ? 2 : level;
-	ft_lst_median(env->stack_a, &env->data_a, level);
+	if (ft_lst_median(env->stack_a, &env->data_a, level) == -1)
+		return (-1);
 	while (1)
 	{
 		ft_push_on_b_while(&env->stack_a, &env->stack_b, env, original_len);
@@ -118,4 +121,5 @@ void			ft_algorithm_sort(t_env *env)
 		if (ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
 			break ;
 	}
+	return (0);
 }

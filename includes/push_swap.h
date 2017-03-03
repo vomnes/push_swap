@@ -6,7 +6,7 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 10:07:48 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/03 15:37:53 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/03 16:34:59 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 # define RED			"\x1b[31m"
 # define LIGHT_GREEN	"\x1b[92m"
-# define WHITE_BLUE "\x1b[38;5;27m"
+# define WHITE_BLUE		"\x1b[38;5;27m"
 # define GOLD			"\x1b[38;5;214m"
-# define UNDERLINE	"\x1b[4;m"
+# define UNDERLINE		"\x1b[4;m"
 # define CLEAR			"\033[H\033[2J"
 # define RESET			"\x1b[0m"
 
@@ -88,7 +88,7 @@ int					ft_push_ab(t_node **stack_one, t_node **stack_two);
 
 int					ft_lst_is_sorted(t_node *list);
 int					ft_lst_is_revsorted(t_node *list);
-void				ft_algorithm_sort(t_env *env);
+int					ft_algorithm_sort(t_env *env);
 void				ft_lst_bubble_sort(t_node **stack, t_env *env);
 void				ft_bubble_sort(int *tab, int len);
 void				ft_lst_bubble_reverse_sort(t_node **stack, t_env *env);
@@ -130,5 +130,6 @@ void				ft_update_spe(t_env *env);
 
 int					ft_visual_in_terminal(t_node *stack_a, t_node *stack_b, \
 											t_env *env);
+void				ft_free_tab(char **tab);
 
 #endif

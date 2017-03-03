@@ -35,8 +35,9 @@ SRC = ./src/ft_algorithm_sort.c \
 			./src/ft_swap_one_two.c \
 			./src/get_next_line.c \
 			./src/shell.c \
-			./src/ft_graphics.c \
-			./src/ft_update_spe.c
+			./src/ft_visual_in_terminal.c \
+			./src/ft_update_spe.c \
+			./src/ft_free_tab.c
 PUSH_SWAP_C = ./src/push_swap.c
 CHECKER_C = ./src/checker.c
 OBJ = $(SRC:.c=.o)
@@ -47,25 +48,23 @@ MAKE = make
 
 GCC = gcc
 FLAGS = -Wall -Werror -Wextra
-F_MLX = -lmlx -framework OpenGL -framework Appkit
 
 INC = ./includes
 LIB = ./libft
 PF = ./ft_printf
-MLX = ./minilibx_macos
 
 .PHONY: clean fclean all re lib
 
-all: lib pf mlx $(PUSH_SWAP) $(CHECKER)
+all: lib pf $(PUSH_SWAP) $(CHECKER)
 
 $(PUSH_SWAP): $(OBJ) $(PUSH_SWAP_O)
 				@echo Compiling $(PUSH_SWAP)
-				@$(GCC) $(FLAGS) $(F_MLX) -o $(PUSH_SWAP) $(OBJ) $(PUSH_SWAP_O) -I $(INC) -L $(LIB) -lft -L $(PF) -lftprintf -L $(MLX) $(F_MLX)
+				@$(GCC) $(FLAGS) -o $(PUSH_SWAP) $(OBJ) $(PUSH_SWAP_O) -I $(INC) -L $(LIB) -lft -L $(PF) -lftprintf
 				@echo ======[Done]======
 
 $(CHECKER): $(OBJ) $(CHECKER_O)
 				@echo Compiling $(CHECKER)
-				@$(GCC) $(FLAGS) -o $(CHECKER) $(OBJ) $(CHECKER_O) -I $(INC) -L $(LIB) -lft -L $(PF) -lftprintf -L $(MLX) $(F_MLX)
+				@$(GCC) $(FLAGS) -o $(CHECKER) $(OBJ) $(CHECKER_O) -I $(INC) -L $(LIB) -lft -L $(PF) -lftprintf
 				@echo ======[Done]======
 
 $(OBJ): src/%.o : src/%.c
@@ -84,13 +83,10 @@ lib:
 				@$(MAKE) -C $(LIB)
 pf:
 				@$(MAKE) -C $(PF)
-mlx:
-				@$(MAKE) -C $(MLX)
 
 clean:
 				@$(MAKE) -C $(LIB) clean
 				@$(MAKE) -C $(PF) clean
-				@$(MAKE) -C $(MLX) clean
 				@echo Clean objects $(PUSH_SWAP) - $(CHECKER)
 				@rm -rf $(OBJ) $(PUSH_SWAP_O) $(CHECKER_O)
 

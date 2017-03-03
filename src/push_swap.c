@@ -6,7 +6,7 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 11:59:07 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/03 15:24:32 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/03 16:32:29 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,19 @@ static int	ft_init_spe(t_env *env)
 	return (0);
 }
 
-static void	ft_free_tab(char **tab)
+static int	ft_run_sort(t_env *env)
 {
-	int i;
-
-	i = 0;
-	if (*tab)
+	if (env->spe.len <= 6)
 	{
-		while (tab[i])
-			ft_strdel(&tab[i]);
-		ft_strdel(tab);
+		if (ft_big_bubble_sort(&env->stack_a, &env->stack_b, env) == -1)
+			return (-1);
 	}
+	else
+	{
+		if (ft_algorithm_sort(env) == -1)
+			return (-1);
+	}
+	return (0);
 }
 
 int			main(int argc, char **argv)
@@ -98,13 +100,8 @@ int			main(int argc, char **argv)
 			return (-1);
 	if (ft_init_spe(&env) == -1)
 		return (-1);
-	if (env.spe.len <= 6)
-	{
-		if (ft_big_bubble_sort(&env.stack_a, &env.stack_b, &env) == -1)
-			return (-1);
-	}
-	else
-		ft_algorithm_sort(&env);
+	if (ft_run_sort(&env) == -1)
+		return (-1);
 	if (env.spe.flg_visual == 1)
 		ft_free_tab(env.spe.tab_visual);
 	return (0);
