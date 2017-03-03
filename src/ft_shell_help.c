@@ -43,7 +43,7 @@ void		ft_shell_help(char *command)
 		ft_putstr("rb    : Rotate b - shift up all elements of stack b by 1.");
 		ft_putendl(" The first");
 		ft_putendl("        element becomes the last one.");
-		ft_putendl("rr    : Ra and rb at the same time.\n");
+		ft_putendl("rr    : ra and rb at the same time.\n");
 		ft_putstr("rra   : Reverse rotate a - shift down all elements of \
 stack");
 		ft_putendl("a by 1.");

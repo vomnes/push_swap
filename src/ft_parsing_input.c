@@ -63,7 +63,8 @@ int			ft_parsing_input(int argc, char **argv, int start)
 	{
 		if (ft_isdigitstr(argv[i + 1]) == -1
 		|| ft_lltoi(argv[i + 1]) >= 2147483648
-		|| ft_lltoi(argv[i + 1]) < -2147483648)
+		|| ft_lltoi(argv[i + 1]) < -2147483648
+		|| ft_strcmp(argv[i + 1], "-") == 0)
 		{
 			ft_putendl_fd("Error", 2);
 			return (-1);

@@ -34,7 +34,7 @@ static int	ft_check_command(char *command, int op)
 		ft_putstr(RED"Unknown Command "RESET);
 		ft_putendl(": Try help");
 		ft_putstr(" >> ");
-		return (1);
+		return (0);
 	}
 	return (0);
 }
