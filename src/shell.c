@@ -6,11 +6,14 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 18:09:25 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/01 14:43:24 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/03 17:16:25 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+#define BOLD	"\x1b[1;m"
+#define ITALIC	"\x1b[3;m"
 
 static int	ft_check_command(char *command, int op)
 {
@@ -31,6 +34,7 @@ static int	ft_check_command(char *command, int op)
 		ft_putstr(RED"Unknown Command "RESET);
 		ft_putendl(": Try help");
 		ft_putstr(" >> ");
+		return (1);
 	}
 	return (0);
 }
@@ -46,6 +50,20 @@ int op)
 		ft_printf("%sSorted with %s%d%s operation(s) !%s\n", LIGHT_GREEN, \
 		RESET, op, LIGHT_GREEN, RESET);
 		return (1);
+	}
+	return (0);
+}
+
+static int	ft_check_error_options(char *command)
+{
+	if (ft_strcmp(command, "Option -print/-visual [on]") == 0)
+	{
+		ft_putstr_fd(ITALIC, 2);
+		ft_putstr_fd(RED"Error"RESET, 2);
+		ft_putstr_fd(" -shell option works only ", 2);
+		ft_putstr_fd(BOLD"without"RESET, 2);
+		ft_putstr_fd(" ./push_swap options\n", 2);
+		return (-1);
 	}
 	return (0);
 }
@@ -67,6 +85,8 @@ int			ft_shell(t_env *env)
 	}
 	while (get_next_line(0, &command) > 0)
 	{
+		if (ft_check_error_options(command) == -1)
+			return (1);
 		ft_operations_print(command, &env->stack_a, &env->stack_b, env);
 		if (ft_put_command(command, &env->stack_a, &env->stack_b, env->op) == 1)
 			return (1);

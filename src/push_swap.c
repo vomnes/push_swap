@@ -29,6 +29,8 @@ static int	ft_opt_parsing(t_env *env, int argc, char **argv)
 	env->spe.flg_visual) == -1)
 		return (-1);
 	env->spe.len = argc - env->spe.flg_print - env->spe.flg_visual;
+	if (env->spe.flg_print == 1 || env->spe.flg_visual == 1)
+		ft_putendl("Option -print/-visual [on]");
 	return (0);
 }
 
