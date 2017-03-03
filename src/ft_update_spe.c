@@ -21,7 +21,9 @@ void	ft_update_spe(t_env *env)
 	}
 	if (env->spe.flg_visual == 1)
 	{
+		mlx_clear_window(env->img.mlx, env->img.win);
 		ft_graphics(env->stack_a, env->stack_b, env);
-		sleep(3);
+		sleep(10);
+		mlx_destroy_image(env->img.mlx, env->img.img);
 	}
 }

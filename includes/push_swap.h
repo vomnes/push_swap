@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "ft_printf.h"
+# include "../minilibx_macos/mlx.h"
 
 # define RED			"\x1b[31m"
 # define GREEN			"\x1b[32m"
@@ -28,7 +29,10 @@
 # define CLEAR			"\033[H\033[2J"
 # define RESET			"\x1b[0m"
 
+# define COLOR_GOLD 0x00ffcc00
+
 # define IS_IN(x) ft_strcmp(command, x) != 0
+# define ABS(x) ((x < 0) ? -x : x)
 
 typedef struct		s_data
 {
@@ -49,9 +53,24 @@ typedef struct		s_node
 typedef struct		s_spe
 {
 	short			flg_print;
+	short			flg_visual;
 	short			flg_shell;
+	int 			len;
 	long int		frame_rate;
+	int 			min;
+	int 			max;
 }					t_spe;
+
+typedef struct		s_img
+{
+	void			*mlx;
+	void			*win;
+	char 			*mlx_data;
+	void			*img;
+	int 			bits_per_pixel;
+	int 			size_line;
+	int 			endian;
+}						t_img;
 
 typedef struct		s_env
 {
@@ -61,6 +80,7 @@ typedef struct		s_env
 	t_data			data_b;
 	int				op;
 	t_spe			spe;
+	t_img 		img;
 }					t_env;
 
 typedef struct		s_max
@@ -125,5 +145,7 @@ void				ft_operations(char *command, t_node **stack_a, \
 t_node **stack_b, t_env *env);
 
 void				ft_update_spe(t_env *env);
+
+int ft_graphics(t_node *stack_a, t_node *stack_b, t_env *env);
 
 #endif

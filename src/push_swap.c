@@ -31,10 +31,12 @@ static int	ft_opt_parsing(t_env *env, int argc, char **argv)
 
 static void ft_init_mlx(t_env *env)
 {
+	env->spe.max = ft_lst_max(env->stack_a);
+	env->spe.min = ft_lst_min(env->stack_a);
+	if (env->spe.min < 0 || env->spe.max <= 0)
+		env->spe.flg_visual = 0;
 	if (env->spe.flg_visual == 1)
 	{
-		env->spe.max = ft_lst_max(env->stack_a);
-		env->spe.min = ft_lst_min(env->stack_a);
 		env->img.mlx = mlx_init();
 		env->img.win = mlx_new_window(env->img.mlx, 2010, 1020, "Push Swap - Visual");
 	}
