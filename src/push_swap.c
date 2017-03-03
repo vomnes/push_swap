@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+#define TAB env->spe.tab_visual
+
 static int	ft_opt_parsing(t_env *env, int argc, char **argv)
 {
 	env->spe.flg_print = 0;
@@ -29,17 +31,34 @@ static int	ft_opt_parsing(t_env *env, int argc, char **argv)
 	return (0);
 }
 
-static void ft_init_mlx(t_env *env)
+static char **ft_malloc_tab(char **tab, int max, int len)
+{
+	int i;
+
+	i = 0;
+	if (!(tab = (char**)ft_memalloc(sizeof(*tab) * (max + 1))))
+		return (NULL);
+	while (i < max)
+	{
+		if (!(tab[i] = (char*)ft_memalloc(sizeof(tab) * (len + 1 + 1))))
+			return (NULL);
+		ft_memset((char*)tab[i], ' ', len + 1);
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
+}
+
+static void ft_init_spe(t_env *env)
 {
 	env->spe.max = ft_lst_max(env->stack_a);
 	env->spe.min = ft_lst_min(env->stack_a);
-	if (env->spe.min < 0 || env->spe.max <= 0)
+	env->spe.len = ft_lst_len(env->stack_a);
+	if (env->spe.min < 0 || env->spe.max <= 0 || env->spe.max > 150)
 		env->spe.flg_visual = 0;
-	if (env->spe.flg_visual == 1)
-	{
-		env->img.mlx = mlx_init();
-		env->img.win = mlx_new_window(env->img.mlx, 2010, 1020, "Push Swap - Visual");
-	}
+	else
+		env->spe.tab_visual = ft_malloc_tab(env->spe.tab_visual, \
+		env->spe.max, env->spe.len);
 }
 
 int			main(int argc, char **argv)
@@ -61,15 +80,13 @@ int			main(int argc, char **argv)
 			return (-1);
 	if (env.spe.flg_print == 1)
 		ft_putendl("Print push_swap : [on]");
-	ft_init_mlx(&env);
-	if (ft_lst_len(env.stack_a) <= 6)
+	ft_init_spe(&env);
+	if (env.spe.len <= 6)
 	{
 		if (ft_big_bubble_sort(&env.stack_a, &env.stack_b, &env) == -1)
 			return (-1);
 	}
 	else
 		ft_algorithm_sort(&env);
-	if (env.spe.flg_visual == 1)
-		mlx_loop(env.img.mlx);
 	return (0);
 }

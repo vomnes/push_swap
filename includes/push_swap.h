@@ -26,6 +26,7 @@
 # define MAGENTA		"\x1b[35m"
 # define CYAN			"\x1b[36m"
 # define GOLD			"\x1b[38;5;214m"
+# define UNDERLINE	"\x1b[4;m"
 # define CLEAR			"\033[H\033[2J"
 # define RESET			"\x1b[0m"
 
@@ -54,23 +55,13 @@ typedef struct		s_spe
 {
 	short			flg_print;
 	short			flg_visual;
+	char 			**tab_visual;
 	short			flg_shell;
 	int 			len;
 	long int		frame_rate;
 	int 			min;
 	int 			max;
 }					t_spe;
-
-typedef struct		s_img
-{
-	void			*mlx;
-	void			*win;
-	char 			*mlx_data;
-	void			*img;
-	int 			bits_per_pixel;
-	int 			size_line;
-	int 			endian;
-}						t_img;
 
 typedef struct		s_env
 {
@@ -79,8 +70,7 @@ typedef struct		s_env
 	t_node			*stack_b;
 	t_data			data_b;
 	int				op;
-	t_spe			spe;
-	t_img 		img;
+	t_spe		spe;
 }					t_env;
 
 typedef struct		s_max
@@ -147,5 +137,6 @@ t_node **stack_b, t_env *env);
 void				ft_update_spe(t_env *env);
 
 int ft_graphics(t_node *stack_a, t_node *stack_b, t_env *env);
+int ft_visual_in_terminal(t_node *stack_a, t_node *stack_b, t_env *env);
 
 #endif
