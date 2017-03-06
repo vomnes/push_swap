@@ -6,7 +6,7 @@
 /*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 20:12:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/01 12:19:58 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/03/06 19:20:37 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ int	ft_checker(t_env *env)
 			ft_putendl_fd("Error", 2);
 			return (1);
 		}
+		ft_strdel(&command);
 	}
+	ft_strdel(&command);
 	if (ft_lst_is_sorted(env->stack_a) == 1 && env->stack_b == NULL)
 	{
 		ft_putendl("OK");
